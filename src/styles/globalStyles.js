@@ -1,24 +1,24 @@
 import { StyleSheet } from "react-native"
 
 
-export const stylesGlobals = StyleSheet.create({
+export const stylesNavegation = StyleSheet.create({
     container: {
         flex: 10,
-        backgroundColor: '#FFFFFF', 
+        backgroundColor: '#FFFFFF',
         alignItems: 'center',
-        justifyContent: 'flex-start', 
+        justifyContent: 'flex-start',
     },
     navigatorContainer: {
         flexDirection: "row",
-        backgroundColor: '#FFE600', 
+        backgroundColor: '#FFE600',
         alignItems: 'center',
-        justifyContent:"start",
-        paddingTop: 20, 
-        paddingBottom: 20, 
+        justifyContent: "start",
+        paddingTop: 20,
+        paddingBottom: 20,
     },
     SearchNavigator: {
         flex: 7,
-        marginRight:20,
+        marginRight: 20,
         height: 40,
         padding: 10,
         borderRadius: 100,
@@ -26,24 +26,36 @@ export const stylesGlobals = StyleSheet.create({
     },
     ButtonNavigator: {
         flex: 1,
-        alignItems:"center",
+        alignItems: "center",
         borderRadius: 100,
         backgroundColor: '#FFE600',
     },
-    TextButtonNavigator:{
+    TextButtonNavigator: {
         transform: [{ rotate: "90deg" }],
-        alignContent:"center",
-        width:20,
-        marginTop:2,
-        fontWeight:"bold",
-        fontSize:25
+        alignContent: "center",
+        width: 20,
+        marginTop: 2,
+        fontWeight: "bold",
+        fontSize: 25
     },
-    CarouselContainer:{
-        flex:10,
-        flexDirection:"row",
+    CarouselContainer: {
+        flexDirection: "row",
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#FFE600', // Fondo base antes del degradado
-        backgroundImage: 'linear-gradient(180deg, rgba(255,230,0,1) 0%, rgba(255,255,255,1) 100%)', // Degradado lineal
+        paddingTop: 10,
+        alignItems: 'start',
+        backgroundColor: '#FFE600', 
+        backgroundImage: 'linear-gradient(180deg, rgba(255,230,0,1) 0%, rgba(255,255,255,1) 100%)', 
+    },
+    CarouselItems: {
+        flex: 1,
+        objectFit: "contain",
+        margin: 10,
+        height: 200,
+    },
+    envio:{
+        
+        border:1,
+        justifyContent:"center",
+        alignItems:"top"
     }
 });

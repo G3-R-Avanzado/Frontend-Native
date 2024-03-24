@@ -45,5 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor:"#FFE600",
     alignItems: "center",
     justifyContent:"center"
+  },
+  logoBienvenida:{
+    width:50
   }
 });
