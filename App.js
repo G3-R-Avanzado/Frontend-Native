@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/navegations/StackNavigation';
 
 export default function App() {
-/*   const [bienvenido, setBienvenida] = useState(true)
+  const [bienvenido, setBienvenida] = useState(true)
   const bienvenida=()=>{
     setBienvenida(false)
   }
@@ -19,10 +19,10 @@ export default function App() {
   if(bienvenido){
     return(
       <View style={styles.bienvenida}>
-        <Image source={logo}/>
+        <Image style={{width:"50%",objectFit:"contain"}} source={logo}/>
       </View>
     )
-  } */
+  }
   return (
     <>
     <StatusBar style="auto" />

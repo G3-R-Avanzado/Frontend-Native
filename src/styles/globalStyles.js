@@ -57,5 +57,10 @@ export const stylesNavegation = StyleSheet.create({
         border:1,
         justifyContent:"center",
         alignItems:"top"
+    },
+    ButtonEnvios:{
+        border:1,
+        borderColor:"black",
+        borderRadius:20,
     }
 });

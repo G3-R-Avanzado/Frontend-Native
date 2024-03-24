@@ -6,8 +6,8 @@ import { TextInput } from 'react-native-gesture-handler';
 import banner1 from "../../../assets/banner1.png"
 import banner2 from "../../../assets/banner2.png"
 import banner3 from "../../../assets/banner3.png"
-import camionIcono from "../../../assets/furgoneta-de-reparto.png"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MostSeller from '../../components/common/MostSeller';
 
 const HomeScreen = () => {
     const [busqueda, setBusqueda] = useState("")
@@ -56,11 +56,16 @@ const HomeScreen = () => {
                     </LinearGradient>
                 </View>
                     <Text>
-                    <MaterialCommunityIcons name="truck-fast-outline" size={24} color="#00a650" />
+                    <MaterialCommunityIcons 
+                    name="truck-fast-outline" 
+                    size={24} 
+                    color="#00a650"
+                    />
                     <Text style={{color:"#00a650"}}>  Envío gratis</Text>
                     <Text> en millones de produstos desde $23.000</Text>
                     </Text>
             </View>
+            <MostSeller/>
         </>
 
     );
