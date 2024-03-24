@@ -1,9 +1,13 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import {Image, StyleSheet, Text, View } from 'react-native';
 import logo from "./assets/logo1.png"
+import { NavigationContainer } from '@react-navigation/native';
+import StackNavigation from './src/navegations/StackNavigation';
+
 export default function App() {
-  const [bienvenido, setBienvenida] = useState(true)
+/*   const [bienvenido, setBienvenida] = useState(true)
   const bienvenida=()=>{
     setBienvenida(false)
   }
@@ -18,13 +22,15 @@ export default function App() {
         <Image source={logo}/>
       </View>
     )
-  }
+  } */
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <>
+    <StatusBar style="auto" />
+    <NavigationContainer style={styles.container}>
+      <StackNavigation/>
+    </NavigationContainer>
+    </>
+    );
 }
 
 const styles = StyleSheet.create({
