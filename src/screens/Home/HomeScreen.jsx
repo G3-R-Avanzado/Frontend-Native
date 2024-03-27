@@ -7,7 +7,7 @@ import banner1 from "../../../assets/banner1.png"
 import banner2 from "../../../assets/banner2.png"
 import banner3 from "../../../assets/banner3.png"
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import MostSeller from '../../components/common/MostSeller';
+import MostSeller from './MostSeller';
 
 const HomeScreen = () => {
     const [busqueda, setBusqueda] = useState("")
@@ -15,7 +15,7 @@ const HomeScreen = () => {
         setBusqueda(e.target.value);
     }
     const imagenes = [banner1, banner2, banner3]
-    const { width } = Dimensions.get('window');
+    const { width:ANCHO_PANTALLA } = Dimensions.get('window');
 
     return (
         <>
@@ -42,10 +42,10 @@ const HomeScreen = () => {
                             keyExtractor={(item, index) => index.toString()}
                             showsHorizontalScrollIndicator={false}
                             decelerationRate={0}
-                            snapToInterval={width}
+                            snapToInterval={ANCHO_PANTALLA}
                             scrollEventThrottle={16}
                             renderItem={({ item }) => (
-                                <View style={[stylesNavegation.CarouselItems, { width: width }]}>
+                                <View style={[stylesNavegation.CarouselItems, { width:ANCHO_PANTALLA }]}>
                                     <Image
                                         source={item}
                                         style={{ width: '100%', height: 200, resizeMode: 'contain',borderRadius:35 }}
@@ -65,9 +65,8 @@ const HomeScreen = () => {
                     <Text> en millones de produstos desde $23.000</Text>
                     </Text>
             </View>
-            <MostSeller/>
+        <MostSeller/>
         </>
-
     );
 };
 
