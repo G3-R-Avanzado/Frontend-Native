@@ -12,11 +12,11 @@ const MostSeller = () => {
             <View>
             <FlatList
             data={productos.aprobados}
-            
+            horizontal={true}
             showsHorizontalScrollIndicator={true}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item})=>(
-                <View style={[styles.contenedorCards,{width:ANCHO_PANTALLA}]}>
+                <View style={[styles.contenedorCards,{width:ANCHO_PANTALLA/2}]}>
                     <Card item={item} ANCHO_PANTALLA={ANCHO_PANTALLA}/>
                 </View>
             )}/>
@@ -32,8 +32,11 @@ const styles= StyleSheet.create({
         alignItems:"start"
     },
     contenedorCards:{
-        border:1,
-        borderColor:"red"
+        height:200,
+        width:200,
+        borderWidth:1,
+        margin:4,
+        borderColor:"black"
     },
     fuentes:{
         fontSize:20
