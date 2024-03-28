@@ -22,7 +22,6 @@ const DrawerNavigation = () => {
             drawerContentContainerStyle: {
                 backgroundColor: '#FFE600',
             },
-            //drawerItemStyle
             headerTitleAlign: 'center',
             headerStyle: {
                 backgroundColor: '#FFE600',

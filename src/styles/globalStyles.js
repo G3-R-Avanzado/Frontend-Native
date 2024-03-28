@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 
 export const stylesNavegation = StyleSheet.create({
     container: {
-        flex: 10,
+        
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -34,8 +34,7 @@ export const stylesNavegation = StyleSheet.create({
     CarouselContainer: {
         flexDirection: "row",
         justifyContent: 'center',
-        paddingTop: 10,
-        alignItems: 'start',
+        alignItems: 'center',
         backgroundColor: '#FFE600', 
         backgroundImage: 'linear-gradient(180deg, rgba(255,230,0,1) 0%, rgba(255,255,255,1) 100%)', 
     },
@@ -53,7 +52,6 @@ export const stylesNavegation = StyleSheet.create({
     },
     ButtonEnvios:{
         border:1,
-        borderColor:"black",
         borderRadius:20,
     },
     navigatorContainer: {

@@ -34,9 +34,7 @@ const styles= StyleSheet.create({
     contenedorCards:{
         height:200,
         width:200,
-        borderWidth:1,
         margin:4,
-        borderColor:"black"
     },
     fuentes:{
         fontSize:20
