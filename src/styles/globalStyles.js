@@ -8,19 +8,12 @@ export const stylesNavegation = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
     },
-    navigatorContainer: {
-        flexDirection: "row",
-        backgroundColor: '#FFE600',
-        alignItems: 'center',
-        justifyContent: "start",
-        paddingTop: 20,
-        paddingBottom: 20,
-    },
+
     SearchNavigator: {
-        flex: 7,
-        marginRight: 20,
+        marginRight: 50,
         height: 40,
-        padding: 10,
+        width:"100%",
+        paddingHorizontal: 10,
         borderRadius: 100,
         backgroundColor: "white"
     },
@@ -62,5 +55,18 @@ export const stylesNavegation = StyleSheet.create({
         border:1,
         borderColor:"black",
         borderRadius:20,
+    },
+    navigatorContainer: {
+        flexDirection: "row",
+        backgroundColor: 'white',
+        alignItems: 'center',
+        justifyContent: "center",
+    },
+    inputContainer:{
+        backgroundColor:"white",
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 2,
+        borderRadius: 50,
     }
 });
