@@ -5,8 +5,6 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import logo from "./assets/logo1.png"
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navegations/DrawerNavigation';
-import MenuNavigation from "./src/components/MenuNavigator"
-import Buscador from './src/components/Buscador';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)

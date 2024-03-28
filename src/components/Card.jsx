@@ -1,5 +1,5 @@
 import { View,Image,Text, StyleSheet} from "react-native";
-import banner from "../../assets/banner1.png"
+
 const Card = ({item,ANCHO_PANTALLA}) => {
     return (
         <View style={[styles.container]}>   

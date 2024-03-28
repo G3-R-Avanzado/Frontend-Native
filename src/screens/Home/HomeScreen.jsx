@@ -19,18 +19,10 @@ const HomeScreen = () => {
     }
     const imagenes = [banner1, banner2, banner3]
     const { width: ANCHO_PANTALLA } = Dimensions.get('window');
-    
+
     return (
         <>
             <View style={stylesNavegation.container}>
-                {/* <View style={stylesNavegation.navigatorContainer}>
-                    <TextInput
-                        style={stylesNavegation.SearchNavigator}
-                        onChangeText={buscar}
-                        value={busqueda}
-                        placeholder="Buscar en Mercado Libre"
-                    />
-                </View> */}
                 <View style={stylesNavegation.CarouselContainer}>
                     <LinearGradient
                         colors={['rgba(255,230,0,1)', 'rgba(255,255,255,1)']}                    >
