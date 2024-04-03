@@ -3,9 +3,9 @@ import { View,Image,Text, StyleSheet} from "react-native";
 const Card = ({item,ANCHO_PANTALLA}) => {
     return (
         <View style={[styles.container]}>   
-            <Image style={styles.imagen} source={{uri: item.imageUrl}}/>
-            <Text style={styles.nombre}>{item.Nombre}</Text>
-            <Text>{item.Precio}</Text>
+            <Image style={styles.imagen} source={{uri: item.Image}}/>
+            <Text style={styles.nombre}>{item.Titulo}</Text>
+            <Text>{item.Price}$</Text>
         </View>
     );
 };
