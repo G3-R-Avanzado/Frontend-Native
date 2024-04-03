@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native"
 
 export const stylesNavegation = StyleSheet.create({
     container: {
-        
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'flex-start',

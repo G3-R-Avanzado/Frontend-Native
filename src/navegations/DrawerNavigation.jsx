@@ -1,5 +1,6 @@
 
 import HomeScreen from '../screens/Home/HomeScreen';
+
 import { Text, TextInput, View, StyleSheet, ScrollView, ActivityIndicatorComponent } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { useState } from 'react';
@@ -7,8 +8,9 @@ import { stylesNavegation } from '../styles/globalStyles';
 import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
-import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons'; <FontAwesome6 name="house-chimney" size={24} color="black" />
-
+import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
+import { Login } from '../screens/Auth/Login';
+import { Register } from '../screens/Auth/Register';
 
 const Drawer = createDrawerNavigator();
 
@@ -29,6 +31,8 @@ const DrawerNavigation = () => {
             },
         }}
         >
+            <Drawer.Screen name="login" component={Login} />
+            <Drawer.Screen name="register" component={Register}/>
             <Drawer.Screen name="Inicio" component={HomeScreen}
                 options={{
                     drawerIcon: ({ focused, color, size }) => (
