@@ -8,14 +8,11 @@ import { useNavigation } from '@react-navigation/native';
 
 
 export const Login = () => {
-
     const navigation = useNavigation();
-
     const initialValues = {
         email: 'agustin.sanchez@example.com',
         password: 'asdasdasdsa'
     }
-
     const handleLoginFormik = (values) => {
         console.log(values);
     }

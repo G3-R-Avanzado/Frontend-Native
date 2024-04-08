@@ -14,6 +14,7 @@ const Posts = () => {
             if (resp.status == 200) {
                 /* const publicaciones = (resp.data).filter((item) => item.id === "1");
                 console.log(publicaciones); */
+                console.log(resp.data);
                 const publicaciones=resp.data
                 setProductos(publicaciones)
                 setCarga(false)

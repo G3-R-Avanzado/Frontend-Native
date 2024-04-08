@@ -1,10 +1,10 @@
 import axios from "axios"
 
-//#region Ingreso y registro
+//#region ingreso y registro
 
 export const iniciarSesion =(usuario)=>{
     try {
-        const consulta = axios.post(import.meta.env.VITE_API_LOGIN,{
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_LOGIN_URL,{
             email: usuario.email,
             password: usuario.contraseña
         })
@@ -15,7 +15,7 @@ export const iniciarSesion =(usuario)=>{
 }
 export const registrarUsuario =(usuario)=>{
     try {
-        const consulta = axios.post(import.meta.env.VITE_API_REGISTER,{
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_REGISTER_URL,{
             name: usuario.nombre,
             username: usuario.usuario,
             email: usuario.email,
@@ -29,7 +29,7 @@ export const registrarUsuario =(usuario)=>{
 }
 export const listarUsuarios =()=>{
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETALL_USERS)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_USERS_URL)
         return consulta;
     } catch (error) {
         return(console.log(error))
@@ -41,7 +41,7 @@ export const listarUsuarios =()=>{
 
 export const cargarProductos = () => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETALL_POST)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_POST_URL)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -49,7 +49,7 @@ export const cargarProductos = () => {
 }
 export const crearProducto = (producto) => {
     try {
-        const consulta = axios.post(import.meta.env.VITE_API_CREATE_POST, {
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_CREATE_POST_URL, {
             titulo: producto.titulo,
             description: producto.description,
             image: producto.imagen,
@@ -65,7 +65,7 @@ export const crearProducto = (producto) => {
 }
 export const modificarProducto = (producto) => {
     try {
-        const consulta = axios.put(import.meta.env.VITE_API_UPDATE_POST, {
+        const consulta = axios.put(process.env.EXPO_PUBLIC_API_UPDATE_POST_URL, {
             _id: producto.id,
             titulo: producto.titulo,
             description: producto.descripcion,
@@ -82,7 +82,7 @@ export const modificarProducto = (producto) => {
 }
 export const buscarProductoPorEstado = (estado) => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETBYSTATUS_POST + estado)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYSTATUS_POST_URL + estado)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -90,7 +90,7 @@ export const buscarProductoPorEstado = (estado) => {
 }
 export const buscarProductoPorUsuario = (id) => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETBYUSER_POST + id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYUSER_POST_URL + id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -98,7 +98,7 @@ export const buscarProductoPorUsuario = (id) => {
 }
 export const buscarProductoPorId = (id) => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETBYID_POST + id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYID_POST_URL + id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -111,7 +111,7 @@ export const buscarProductoPorId = (id) => {
 
 export const crearCategoria = (categoria) => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_CREATE_CATEGORY ,{
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_CREATE_CATEGORY_URL ,{
             name: categoria.nombre,
             subcategories: categoria.subcategoria
         })
@@ -122,7 +122,7 @@ export const crearCategoria = (categoria) => {
 }
 export const buscarCategoriaporId = (id) => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETBYID_CATEGORY+id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYID_CATEGORY_URL+id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -130,7 +130,7 @@ export const buscarCategoriaporId = (id) => {
 }
 export const listarCategorias = () => {
     try {
-        const consulta = axios.get(import.meta.env.VITE_API_GETALL_CATEGORY)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_CATEGORY_URL)
         return consulta
     } catch (error) {
         return (console.log(error))
