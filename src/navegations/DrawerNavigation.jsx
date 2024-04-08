@@ -11,6 +11,7 @@ import Error from '../components/Error';
 import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
 import { Login } from '../screens/Auth/Login';
 import { Register } from '../screens/Auth/Register';
+import Posts from '../screens/User/Posts';
 
 const Drawer = createDrawerNavigator();
 
@@ -33,6 +34,8 @@ const DrawerNavigation = () => {
         >
             <Drawer.Screen name="login" component={Login} />
             <Drawer.Screen name="register" component={Register}/>
+            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{
+            }}  />
             <Drawer.Screen name="Inicio" component={HomeScreen}
                 options={{
                     drawerIcon: ({ focused, color, size }) => (
