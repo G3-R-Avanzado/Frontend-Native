@@ -17,7 +17,7 @@ const StackNavigation = (props) => {
     useEffect(()=>{
         isLogged && dispatch(logOut())
     },[])
-
+    
     useEffect(()=>{
         isLogged && navigation.navigate('Home') 
     },[isLogged])

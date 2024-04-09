@@ -1,5 +1,4 @@
 import HomeScreen from '../screens/Home/HomeScreen';
-import StackNavigation from './StackNavigation';
 import { Text, TextInput, View, StyleSheet, ScrollView, ActivityIndicatorComponent } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { useState } from 'react';
@@ -14,11 +13,13 @@ import Posts from '../screens/User/Posts';
 import DetailPost from '../screens/User/DetailPost';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { logOut } from '../store/Slices/auth/authThunks';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import StackNavigation from './StackNavigation';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
+    const dispatch = useDispatch();
 
     return (
         <Drawer.Navigator
@@ -120,7 +121,6 @@ const DrawerNavigation = () => {
                     <MaterialCommunityIcons name="star-shooting-outline" size={24} color="black" />
                 ),
             }} component={Error} />
-
             <Drawer.Screen name="Categorías" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="format-list-checkbox" size={24} color="black" />
