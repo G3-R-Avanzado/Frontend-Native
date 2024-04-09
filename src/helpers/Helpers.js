@@ -41,7 +41,9 @@ export const listarUsuarios =()=>{
 
 export const cargarProductos = () => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_POST_URL)
+        //https://65e7a2ac53d564627a8f1556.mockapi.io/publication
+        //process.env.EXPO_PUBLIC_API_GETALL_POST_URL
+        const consulta = axios.get("https://65e7a2ac53d564627a8f1556.mockapi.io/publication")
         return consulta
     } catch (error) {
         return (console.log(error))

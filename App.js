@@ -5,12 +5,16 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import logo from "./assets/logo1.png"
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navegations/DrawerNavigation';
+import DetailPost from './src/screens/User/DetailPost';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
   const bienvenida = () => {
     setBienvenida(false)
   }
+  const Stack = createNativeStackNavigator();
+
   useEffect(() => {
     setTimeout(() => {
       bienvenida();

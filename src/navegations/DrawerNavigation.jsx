@@ -1,6 +1,5 @@
 
 import HomeScreen from '../screens/Home/HomeScreen';
-
 import { Text, TextInput, View, StyleSheet, ScrollView, ActivityIndicatorComponent } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
 import { useState } from 'react';
@@ -12,13 +11,13 @@ import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwes
 import { Login } from '../screens/Auth/Login';
 import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
+import DetailPost from '../screens/User/DetailPost';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
     const icono = (<EvilIcons name="search" size={24} color="black" />);
-
-
     return (
         <Drawer.Navigator screenOptions={{
             headerTintColor: 'black',
@@ -47,6 +46,14 @@ const DrawerNavigation = () => {
                         </View>)
                 }}
             />
+            
+            <Drawer.Screen
+                name="DetailPost"
+                component={DetailPost} // Integrar el stack de DetailPost
+
+                style={style.botonesOcultos}
+            />
+            
             <Drawer.Screen name="Buscar" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <EvilIcons name="search" size={size} color={color} />
@@ -143,4 +150,9 @@ const DrawerNavigation = () => {
     );
 };
 
+const style= StyleSheet.create({
+    botonesOcultos:{
+        display:"none"
+    }
+})
 export default DrawerNavigation;

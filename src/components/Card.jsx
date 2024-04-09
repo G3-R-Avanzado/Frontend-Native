@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 
-const Card = ({ item, ANCHO_PANTALLA, botonContenido }) => {
+const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Card = ({ item, ANCHO_PANTALLA, botonContenido }) => {
                 <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.Description}</Text>
                 <Text style={styles.nombre}>{item.Titulo}</Text>
                 <Text>{item.Price}$</Text>
-                <TouchableHighlight  style={styles.button} onPress={onPress}>
+                <TouchableHighlight  style={styles.button} onPress={() =>navigation.navigate("DetailPost")} >
                 <View>
                     <Text style={styles.ContenidoBoton}>{boton}</Text>
                 </View>
