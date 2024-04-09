@@ -1,52 +1,62 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
-import { stylesNavegation } from '../../styles/globalStyles';
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { useNavigation } from '@react-navigation/native';
+import { validationAuthUser } from '../../helpers/Helpers';
+import { styleAuth } from './styleAuth';
 
+import { useDispatch, useSelector } from 'react-redux'
+import { getLogin } from '../../store/Slices/auth/authThunks';
 
 export const Login = () => {
+    const dispatch = useDispatch();
     const navigation = useNavigation();
     const initialValues = {
-        email: 'agustin.sanchez@example.com',
-        password: 'asdasdasdsa'
+        email: '',
+        password: ''
     }
     const handleLoginFormik = (values) => {
-        console.log(values);
+        dispatch(getLogin(values.email, values.password))
     }
 
     return (
-        <View style={style.container}>
+        <View style={styleAuth.container}>
             <View style={style.logo}>
                 <Image
                     source={Logo}
                     style={{
                         width: 200,
-                        height: 200
+                        height: 150
                     }}
                 />
-                <Text style={style.title}>TucuLibre</Text>
+                <Text style={styleAuth.title}>TucuLibre</Text>
             </View>
             <View style={style.form}>
                 <Formik
                     initialValues={initialValues}
                     onSubmit={handleLoginFormik}
-                >{({ handleSubmit, handleChange, values, handleBlur }) => (
+                    validationSchema={validationAuthUser}
+                >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                     <>
                         <TextInput
-                            style={style.input}
+                            style={styleAuth.input}
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
+                            placeholder='email'
                         />
+                        {errors.email  && touched.email && <Text style={{color: 'red'}}>{errors.email}</Text>}
                         <TextInput
-                            style={style.input}
+                            style={styleAuth.input}
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
+                            secureTextEntry={true}
+                            placeholder='contraseña'
                         />
+                        {errors.password && touched.password && <Text style={{color: 'red'}}>{errors.password}</Text>}
                         <CustomButton
                             text={'Login'}
                             onClick={handleSubmit}
@@ -63,40 +73,27 @@ export const Login = () => {
             <View style={style.register}>
                 <CustomButton
                     text={'Register'}
-                    onClick={()=>navigation.navigate('register')}
+                    onClick={()=>navigation.navigate('Register')}
                     color='white'
                 />
             </View>
         </View>
     );
 };
+
+
 const style = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FFE600',
-        padding: 10
-    },
     logo: {
         flex: 2,
         justifyContent: 'center',   
         alignItems: 'center'
     },
-    title: {
-        fontSize: 40,
-        fontWeight: 'bold'
-    },
-    form: {
-        flex: 2,
-        width: '100%',
-    },
-    input: {
-        padding: 10,
-        marginVertical: 3,
-        backgroundColor: 'white',
-        borderRadius: 10
-    },
     register: {
         flex: 1,
         justifyContent: 'flex-end'
+    }, 
+    form: {
+        flex: 2,
+        width: '100%',
     }
 })

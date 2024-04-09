@@ -8,8 +8,17 @@ import DrawerNavigation from './src/navegations/DrawerNavigation';
 import DetailPost from './src/screens/User/DetailPost';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
+
+// import DrawerNavigation from './src/navegations/DrawerNavigation';
+import StackNavigation from './src/navegations/StackNavigation';
+
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+
+
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
+
   const bienvenida = () => {
     setBienvenida(false)
   }
@@ -20,6 +29,7 @@ export default function App() {
       bienvenida();
     }, 2000);
   }, [])
+
   if (bienvenido) {
     return (
       <View style={styles.bienvenida}>
@@ -28,12 +38,12 @@ export default function App() {
     )
   }
   return (
-    <>
+    <Provider store={store}>
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        <DrawerNavigation />
+        <StackNavigation />
       </NavigationContainer>      
-    </>
+    </Provider>
   );
 }
 
