@@ -7,14 +7,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navegations/DrawerNavigation';
 import DetailPost from './src/screens/User/DetailPost';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-
 // import DrawerNavigation from './src/navegations/DrawerNavigation';
 import StackNavigation from './src/navegations/StackNavigation';
-
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
-
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)

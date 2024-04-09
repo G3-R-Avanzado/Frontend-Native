@@ -1,5 +1,3 @@
-
-
 import HomeScreen from '../screens/Home/HomeScreen';
 import StackNavigation from './StackNavigation';
 import { Text, TextInput, View, StyleSheet, ScrollView, ActivityIndicatorComponent } from 'react-native';
@@ -15,15 +13,13 @@ import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
 import DetailPost from '../screens/User/DetailPost';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons'; <FontAwesome6 name="house-chimney" size={24} color="black" />
-
 import { logOut } from '../store/Slices/auth/authThunks';
 import { useDispatch } from 'react-redux'
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
-    const icono = (<EvilIcons name="search" size={24} color="black" />);
+
     return (
         <Drawer.Navigator
             screenOptions={{
@@ -36,12 +32,8 @@ const DrawerNavigation = () => {
                     backgroundColor: '#FFE600',
                     borderBottomWidth: 1,
                 },
-            }}
-        >
-            <Drawer.Screen name="login" component={Login} />
-            <Drawer.Screen name="register" component={Register}/>
-            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{
-            }}  />
+            }}>
+            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{}}/>
             <Drawer.Screen name="Inicio" component={HomeScreen}
                 options={{
                     drawerIcon: ({ focused, color, size }) => (
@@ -53,14 +45,11 @@ const DrawerNavigation = () => {
                         </View>)
                 }}
             />
-            
             <Drawer.Screen
                 name="DetailPost"
-                component={DetailPost} // Integrar el stack de DetailPost
-
+                component={DetailPost} 
                 style={style.botonesOcultos}
             />
-            
             <Drawer.Screen name="Buscar" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <EvilIcons name="search" size={size} color={color} />

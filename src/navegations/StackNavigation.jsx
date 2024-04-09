@@ -12,7 +12,6 @@ const Stack = createStackNavigator();
 const StackNavigation = (props) => {    
     const dispatch = useDispatch();
     const {isLogged} = useSelector((store)=>store.auth)
-
     const navigation = useNavigation();
 
     useEffect(()=>{
@@ -31,13 +30,10 @@ const StackNavigation = (props) => {
                 },
                 headerStyle:{
                     backgroundColor: '#FFE600'
-                }
-            }}
-        >
+                }}}>
             <Stack.Screen name='Login' options={{ headerShown: false }} component={Login}/>
             <Stack.Screen name='Register' component={Register}/>
             <Stack.Screen name='Home' options={{ headerShown: false }} component={DrawerNavigation}/>
-
         </Stack.Navigator>
     );
 };
