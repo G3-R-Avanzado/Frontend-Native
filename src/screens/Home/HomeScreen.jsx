@@ -24,7 +24,6 @@ const HomeScreen = () => {
         <>
             <View style={stylesNavegation.container}>
                 <View style={stylesNavegation.CarouselContainer}>
-                    
                     <LinearGradient
                         colors={['rgba(255,230,0,1)', 'rgba(255,255,255,1)']}                    >
                         <FlatList
