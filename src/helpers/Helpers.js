@@ -4,7 +4,7 @@ import axios from "axios"
 
 export const iniciarSesion =(usuario)=>{
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_LOGIN_URL,{
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL,{
             email: usuario.email,
             password: usuario.contraseña
         })
@@ -15,7 +15,7 @@ export const iniciarSesion =(usuario)=>{
 }
 export const registrarUsuario =(usuario)=>{
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_REGISTER_URL,{
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL+"/register",{
             name: usuario.nombre,
             username: usuario.usuario,
             email: usuario.email,
@@ -29,7 +29,7 @@ export const registrarUsuario =(usuario)=>{
 }
 export const listarUsuarios =()=>{
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_USERS_URL)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/users")
         return consulta;
     } catch (error) {
         return(console.log(error))
@@ -41,9 +41,7 @@ export const listarUsuarios =()=>{
 
 export const cargarProductos = () => {
     try {
-        //https://65e7a2ac53d564627a8f1556.mockapi.io/publication
-        //process.env.EXPO_PUBLIC_API_GETALL_POST_URL
-        const consulta = axios.get("https://65e7a2ac53d564627a8f1556.mockapi.io/publication")
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/publication/getall")
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -51,7 +49,7 @@ export const cargarProductos = () => {
 }
 export const crearProducto = (producto) => {
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_CREATE_POST_URL, {
+        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL+"/publication", {
             titulo: producto.titulo,
             description: producto.description,
             image: producto.imagen,
@@ -67,7 +65,7 @@ export const crearProducto = (producto) => {
 }
 export const modificarProducto = (producto) => {
     try {
-        const consulta = axios.put(process.env.EXPO_PUBLIC_API_UPDATE_POST_URL, {
+        const consulta = axios.put(process.env.EXPO_PUBLIC_API_URL+"/publication/update", {
             _id: producto.id,
             titulo: producto.titulo,
             description: producto.descripcion,
@@ -84,7 +82,7 @@ export const modificarProducto = (producto) => {
 }
 export const buscarProductoPorEstado = (estado) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYSTATUS_POST_URL + estado)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL +"/publication/status"+ estado)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -92,7 +90,7 @@ export const buscarProductoPorEstado = (estado) => {
 }
 export const buscarProductoPorUsuario = (id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYUSER_POST_URL + id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL +"/getall/user/"+ id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -100,7 +98,7 @@ export const buscarProductoPorUsuario = (id) => {
 }
 export const buscarProductoPorId = (id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYID_POST_URL + id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/publication/get/filterpublication/0/"+ id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -113,7 +111,7 @@ export const buscarProductoPorId = (id) => {
 
 export const crearCategoria = (categoria) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_CREATE_CATEGORY_URL ,{
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories/create" ,{
             name: categoria.nombre,
             subcategories: categoria.subcategoria
         })
@@ -124,7 +122,7 @@ export const crearCategoria = (categoria) => {
 }
 export const buscarCategoriaporId = (id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETBYID_CATEGORY_URL+id)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories/"+id)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -132,7 +130,7 @@ export const buscarCategoriaporId = (id) => {
 }
 export const listarCategorias = () => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_GETALL_CATEGORY_URL)
+        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories")
         return consulta
     } catch (error) {
         return (console.log(error))
