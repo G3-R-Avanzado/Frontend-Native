@@ -1,7 +1,6 @@
-import React from 'react';
 import { View,Text,Image } from 'react-native';
 
-const DashBoardAdmin = ({item}) => {
+const DetailProduct = ({item}) => {
     return (
         <View>
             <Text>{item.nombre}</Text>
@@ -36,36 +35,9 @@ const DashBoardAdmin = ({item}) => {
                 
                 </FlatList>
             </View>
-            <View>
-                <Text>Medios de pago</Text>
-                <Text>Hasta 12 cuotas sin tarjeta</Text>
-                <Image/>
-                <Text>Tarjetas de crédito</Text>
-                <Text>¡Mismo precio en cuotas con bancos seleccionados!</Text>
-                <View>
-                    <Image source={}/>
-                    <Image source={}/>
-                    <Image source={}/>
-                </View>
-                <Text>Tarjetas de débito</Text>
-                <View>
-                    <Image source={}/>
-                    <Image source={}/>
-                    <Image source={}/>
-                    <Image source={}/>
-                    <Image source={}/>
-                    <Image source={}/>
-                </View>
-                <Text>Efectivo</Text>
-                <View>
-                    <Image source={}/>
-                    <Image source={}/>
-                </View>
-                <Button>Conocé otros medios de pago</Button>
-
-            </View>
+            <ShopCards/>
         </View>
     );
 };
 
-export default DashBoardAdmin;
+export default DetailProduct;

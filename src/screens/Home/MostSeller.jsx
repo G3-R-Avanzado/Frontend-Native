@@ -41,7 +41,6 @@ const MostSeller = () => {
                                         <Card item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
                                     </View>
                                 )} />
-
                         )
                 }
             </View>

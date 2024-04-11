@@ -69,6 +69,7 @@ export const stylesNavegation = StyleSheet.create({
 });
 
 export const imagesSVG={
+    cabalDebito:"",
     mercadoCredito:"https://http2.mlstatic.com/storage/logos-api-admin/51b446b0-571c-11e8-9a2d-4b2bd7b1bf77-m.svg",
     creditoInternacionales:{
         visa:"https://http2.mlstatic.com/storage/logos-api-admin/a5f047d0-9be0-11ec-aad4-c3381f368aaf-m.svg",
