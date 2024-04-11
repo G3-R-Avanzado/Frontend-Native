@@ -2,9 +2,10 @@ import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityI
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import { cargarProductos } from "../../helpers/Helpers"
+import VisualizadorProductos from "../../components/VisualizadorProductos";
 const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 
-const MostSeller = () => {
+const MostSeller = ({navigation }) => {
     const [productos, setProductos] = useState()
     const [carga, setCarga] = useState(true)
     const boton = "Ver detalle"
@@ -30,18 +31,7 @@ const MostSeller = () => {
                             <ActivityIndicator color="#4285F4" size="large" />
                         </View>
                     ) :
-                        (
-                            <FlatList
-                                data={productos}
-                                horizontal={true}
-                                showsHorizontalScrollIndicator={true}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={({ item }) => (
-                                    <View style={[styles.contenedorCards, { width: ANCHO_PANTALLA / 2 }]}>
-                                        <Card item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
-                                    </View>
-                                )} />
-                        )
+                        (<VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>)
                 }
             </View>
         </View>

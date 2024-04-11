@@ -33,7 +33,6 @@ export const Register = () => {
         <KeyboardAvoidingView style={{flex: 1}} behavior="padding"> 
             <ScrollView contentContainerStyle={{flexGrow: 1}}>
                 <View style={[styleAuth.container, style.containerRegister]}>
-
                     <View style={style.img}>
                         <Image
                             source={Logo}
@@ -115,7 +114,6 @@ export const Register = () => {
                         )}
                         </Formik>
                     </View>
-
                     
                 </View>
             </ScrollView>

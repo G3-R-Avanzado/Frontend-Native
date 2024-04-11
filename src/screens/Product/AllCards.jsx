@@ -8,11 +8,9 @@ const AllCards = () => {
             <Text>Acreditación instantánea.</Text>
             <Text>Mismo precio en hasta 6 cuotas con estos bancos</Text>
             <FlatList>
-
             </FlatList>
             <Text>O hasta 12 cuotas con interés</Text>
             <FlatList>
-            
             </FlatList>
             <Text>Dinero disponible en Mercado Pago</Text>
             <Text>Al finalizar tu compra, pagás con el dinero disponible en tu cuenta. Podés ingresar dinero a Mercado Pago por el Débito inmediato, transferencia bancaria o en efectivo.</Text>

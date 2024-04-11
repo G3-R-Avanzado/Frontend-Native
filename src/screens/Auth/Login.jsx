@@ -58,7 +58,7 @@ export const Login = () => {
                         />
                         {errors.password && touched.password && <Text style={{color: 'red'}}>{errors.password}</Text>}
                         <CustomButton
-                            text={'Login'}
+                            text={'Iniciar sesión'}
                             onClick={handleSubmit}
                             color='white'
                         />
@@ -72,7 +72,7 @@ export const Login = () => {
             </View>
             <View style={style.register}>
                 <CustomButton
-                    text={'Register'}
+                    text={'Registrarme'}
                     onClick={()=>navigation.navigate('Register')}
                     color='white'
                 />

@@ -6,6 +6,7 @@ import DrawerNavigation from './DrawerNavigation';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import { logOut } from '../store/Slices/auth/authThunks';
+import DetailProduct from '../screens/Product/DetailProduct';
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const StackNavigation = (props) => {
                 }}}>
             <Stack.Screen name='Login' options={{ headerShown: false }} component={Login}/>
             <Stack.Screen name='Register' component={Register}/>
+            <Stack.Screen name="DetailProduct" component={DetailProduct} />
             <Stack.Screen name='Home' options={{ headerShown: false }} component={DrawerNavigation}/>
         </Stack.Navigator>
     );

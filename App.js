@@ -37,7 +37,7 @@ export default function App() {
     <Provider store={store}>
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        <StackNavigation />
+        <StackNavigation/>
       </NavigationContainer>      
     </Provider>
   );
