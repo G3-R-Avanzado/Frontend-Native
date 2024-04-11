@@ -3,9 +3,10 @@ import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import { cargarProductos } from "../../helpers/Helpers"
 import VisualizadorProductos from "../../components/VisualizadorProductos";
+import Spinner from "../../components/Spinner";
 const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 
-const MostSeller = ({navigation }) => {
+const MostSeller = ({ navigation }) => {
     const [productos, setProductos] = useState()
     const [carga, setCarga] = useState(true)
     const boton = "Ver detalle"
@@ -23,15 +24,14 @@ const MostSeller = ({navigation }) => {
 
     return (
         <View style={styles.contenedor}>
-            <Text style={styles.fuentes}>Lo mas vendido!</Text>
             <View>
                 {
-                    carga ? (
-                        <View>
-                            <ActivityIndicator color="#4285F4" size="large" />
-                        </View>
-                    ) :
-                        (<VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>)
+                    carga ?
+                        (<Spinner />) :
+                        (<>
+                        <VisualizadorProductos boton={boton} productos={productos} navigation={navigation} />
+                        <VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>
+                        </>)
                 }
             </View>
         </View>
@@ -52,6 +52,6 @@ const styles = StyleSheet.create({
     fuentes: {
         fontSize: 20
     },
-    
+
 })
 export default MostSeller;

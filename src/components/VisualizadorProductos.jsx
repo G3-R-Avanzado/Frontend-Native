@@ -6,6 +6,7 @@ const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 const VisualizadorProductos = ({productos,navigation,boton}) => {
     return (
         <View>
+            <Text style={styles.fuentes}>Lo mas vendido!</Text>
             <FlatList
                 data={productos}
                 horizontal={true}

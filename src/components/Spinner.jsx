@@ -1,10 +1,10 @@
-import React from 'react';
+import { ActivityIndicator, View } from 'react-native';
 
 const Spinner = () => {
     return (
-        <div>
-            
-        </div>
+        <View>
+        <ActivityIndicator color="#4285F4" size="large" />
+        </View>
     );
 };
 
