@@ -1,14 +1,24 @@
-import React from 'react';
-import { FlatList, StyleSheet, Text, View,Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { FlatList, StyleSheet, Text, View,Dimensions, ScrollView } from 'react-native';
 import Card from './Card';
+import Spinner from './Spinner';
 const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 
-const SliderProductos = ({productos,navigation,boton}) => {
+const SliderProductos = ({productosFiltrados,categoria,navigation,boton}) => {
+    const [carga, setCarga] = useState(true)
+    useEffect(()=>{
+        if(productosFiltrados!==""){
+            setCarga(false);
+        }
+    },[])
     return (
         <View>
-            <Text style={styles.fuentes}>Lo mas vendido!</Text>
+        {carga?
+            (<Spinner/>):
+            <>
+            <Text style={styles.fuentes}>{categoria}</Text>
             <FlatList
-                data={productos}
+                data={productosFiltrados}
                 horizontal={true}
                 showsHorizontalScrollIndicator={true}
                 keyExtractor={(item, index) => index.toString()}
@@ -17,7 +27,9 @@ const SliderProductos = ({productos,navigation,boton}) => {
                         <Card navigation={navigation} item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
                     </View>
                 )} />
-        </View>
+                </>
+            }
+            </View>
     );
 };
 const styles = StyleSheet.create({

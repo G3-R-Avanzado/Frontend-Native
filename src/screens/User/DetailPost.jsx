@@ -9,9 +9,10 @@ const DetailPost = ({item}) => {
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
     
-    
+    const { selectedItem } = route.params;
+
     useEffect(()=>{
-        //cargar producto
+        
     },[])
 
     return (
@@ -20,8 +21,8 @@ const DetailPost = ({item}) => {
                 <View style={[styleAuth.container, style.containerRegister]}>
                     <View style={style.form}>
                         <Formik
-                            initialValues={{}}
-                            onSubmit={(values)=>console.log(values)}
+                            initialValues={selectedItem}
+                            onSubmit={(values)=>console.log("")}
                             validationSchema={{}}
                         >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                             <>
@@ -31,7 +32,7 @@ const DetailPost = ({item}) => {
                                         <TextInput
                                             style={styleAuth.input}
                                             placeholder={'Pj. Reloj Smartwatch U8'}
-                                            value={values.name}
+                                            value={values.titulo}
                                             onChangeText={handleChange('name')}
                                             onBlur={handleBlur('name')}
                                         />

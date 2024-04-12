@@ -1,40 +1,64 @@
-import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityIndicator } from "react-native";
+import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityIndicator, ScrollView } from "react-native";
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
-import { cargarProductos } from "../../helpers/Helpers"
+import { cargarProductos, listarCategorias } from "../../helpers/Helpers"
 import SliderProductos from "../../components/SliderProductos";
 import Spinner from "../../components/Spinner";
-const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 
 const MostSeller = ({ navigation }) => {
-    const [productos, setProductos] = useState()
+    const [productos, setProductos] = useState([])
+    const [categoria, setCategoria] = useState([])
     const [carga, setCarga] = useState(true)
     const boton = "Ver detalle"
     useEffect(() => {
+        listarCategorias().then((resp) => {
+            if (resp.status == 200) {
+                const categorias = resp.data.map((item) => ({ id: item._id, name: item.name }));
+                setCategoria(categorias);
+            }
+        })
         cargarProductos().then((resp) => {
             if (resp.status == 200) {
                 setProductos(resp.data)
-                setCarga(false)
             } else {
-                setCarga(false)
                 //mensaje de error al cargar
             }
-        })
+        }
+        )
     }, [])
-
+    useEffect(() => {
+        if (categoria.length > 2) {
+            setCarga(false)
+        }
+    }, [categoria])
     return (
-        <View style={styles.contenedor}>
+        <ScrollView >
             <View>
                 {
                     carga ?
                         (<Spinner />) :
                         (<>
-                        <SliderProductos boton={boton} productos={productos} navigation={navigation} />
-                        <SliderProductos boton={boton} productos={productos} navigation={navigation}/>
+                            {
+                                <>
+                                    {categoria.map((categoria, index) => {
+                                        const productosFiltrados = productos.filter((producto) => producto.category === categoria.id);
+                                        return (
+                                            <SliderProductos
+                                                key={index}
+                                                boton={boton}
+                                                categoria={categoria.name}
+                                                productosFiltrados={productosFiltrados}
+                                                navigation={navigation}
+                                            />
+                                        );
+                                    })}
+                                </>
+                            }
+                            {/* <SliderProductos boton={boton} productos={productos} navigation={navigation}/> */}
                         </>)
                 }
             </View>
-        </View>
+        </ScrollView>
     );
 
 };

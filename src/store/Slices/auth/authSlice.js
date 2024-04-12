@@ -14,20 +14,6 @@ const initialState = {
     message: null
 }  
 
-/* const initialState = {
-    user: {
-        name: null,
-        username: null,
-        email: null,
-        rol: null,
-        id: null,
-        createdAt: null,
-        updateAt: null
-    },
-    isLogged: false,
-    message: null
-} */
-
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,

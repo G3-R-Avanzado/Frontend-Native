@@ -2,17 +2,19 @@ import React, { useEffect } from 'react';
 import { ActivityIndicator, Dimensions, FlatList, Text, StyleSheet, View } from 'react-native';
 import Card from '../../components/Card';
 import { useState } from 'react';
-import { cargarProductos } from "../../helpers/Helpers"
+import { buscarProductoPorUsuario } from "../../helpers/Helpers"
 import VisualizadorProductos from '../../components/VisualizadorProductos';
+import { useSelector } from 'react-redux';
 
 const Posts = ({navigation}) => {
     const [productos, setProductos] = useState("")
     const { width: ANCHO_PANTALLA } = Dimensions.get("window")
     const [carga, setCarga] = useState(true)
     const boton = "Gestionar"
-
+    const {user} = useSelector((store)=>store.auth)
+    
     useEffect(() => {
-        cargarProductos().then((resp) => {
+        buscarProductoPorUsuario(user.id).then((resp) => {
             if (resp.status == 200) {
                 /* const publicaciones = (resp.data).filter((item) => item.id === "1");
                 console.log(publicaciones); */

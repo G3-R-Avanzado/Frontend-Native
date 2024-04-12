@@ -9,7 +9,7 @@ const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
         if (boton == "Gestionar") {
 
         } else {
-
+            
         }
     }, [])
     const onPress = () => {
@@ -21,10 +21,10 @@ const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     };
     return (
         <View  style={[styles.container]}>
-                <Image style={styles.imagen} source={{ uri: item.Image }} />
-                <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.Description}</Text>
-                <Text style={styles.nombre}>{item.Titulo}</Text>
-                <Text>{item.Price}$</Text>
+                <Image style={styles.imagen} source={{ uri: item.image }} />
+                <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.description}</Text>
+                <Text style={styles.nombre}>{item.titulo}</Text>
+                <Text>{item.price}$</Text>
                 <TouchableHighlight  style={styles.button} onPress={onPress}>
                 <View>
                     <Text style={styles.ContenidoBoton}>{boton}</Text>

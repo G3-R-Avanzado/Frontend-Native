@@ -2,9 +2,9 @@ import axios from "axios"
 
 //#region ingreso y registro
 
-export const iniciarSesion =(usuario)=>{
+export const iniciarSesion =async(usuario)=>{
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL,{
+        const consulta = await axios.post(process.env.EXPO_PUBLIC_API_URL,{
             email: usuario.email,
             password: usuario.contraseña
         })
@@ -13,9 +13,9 @@ export const iniciarSesion =(usuario)=>{
         return(console.log(error))
     }
 }
-export const registrarUsuario =(usuario)=>{
+export const registrarUsuario =async(usuario)=>{
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL+"/register",{
+        const consulta = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/register`,{
             name: usuario.nombre,
             username: usuario.usuario,
             email: usuario.email,
@@ -27,9 +27,9 @@ export const registrarUsuario =(usuario)=>{
         return(console.log(error))
     }
 }
-export const listarUsuarios =()=>{
+export const listarUsuarios =async()=>{
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/users")
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/users`)
         return consulta;
     } catch (error) {
         return(console.log(error))
@@ -39,17 +39,17 @@ export const listarUsuarios =()=>{
 
 //#region publicaciones
 
-export const cargarProductos = () => {
+export const cargarProductos = async() => {
     try {
-        const consulta = axios.get("https://65e7a2ac53d564627a8f1556.mockapi.io/publication")
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/publication/getall`)
         return consulta
     } catch (error) {
         return (console.log(error))
     }
 }
-export const crearProducto = (producto) => {
+export const crearProducto = async(producto) => {
     try {
-        const consulta = axios.post(process.env.EXPO_PUBLIC_API_URL+"/publication", {
+        const consulta = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/publication`, {
             titulo: producto.titulo,
             description: producto.description,
             image: producto.imagen,
@@ -63,9 +63,9 @@ export const crearProducto = (producto) => {
         return (console.log(error))
     }
 }
-export const modificarProducto = (producto) => {
+export const modificarProducto = async(producto) => {
     try {
-        const consulta = axios.put(process.env.EXPO_PUBLIC_API_URL+"/publication/update", {
+        const consulta = await axios.put(`${process.env.EXPO_PUBLIC_API_URL}/publication/update`, {
             _id: producto.id,
             titulo: producto.titulo,
             description: producto.descripcion,
@@ -80,25 +80,25 @@ export const modificarProducto = (producto) => {
         return (console.log(error))
     }
 }
-export const buscarProductoPorEstado = (estado) => {
+export const buscarProductoPorEstado = async(estado) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL +"/publication/status"+ estado)
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/publication/status/${estado}`)
         return consulta
     } catch (error) {
         return (console.log(error))
     }
 }
-export const buscarProductoPorUsuario = (id) => {
+export const buscarProductoPorUsuario = async(id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL +"/getall/user/"+ id)
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/publication/getall/user/${id}`)
         return consulta
     } catch (error) {
         return (console.log(error))
     }
 }
-export const buscarProductoPorId = (id) => {
+export const buscarProductoPorId = async(id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/publication/get/filterpublication/0/"+ id)
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/publication/get/filterpublication/0/${id}`)
         return consulta
     } catch (error) {
         return (console.log(error))
@@ -109,9 +109,9 @@ export const buscarProductoPorId = (id) => {
 
 //#region categorias
 
-export const crearCategoria = (categoria) => {
+export const crearCategoria = async(categoria) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories/create" ,{
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/categories/create` ,{
             name: categoria.nombre,
             subcategories: categoria.subcategoria
         })
@@ -120,17 +120,17 @@ export const crearCategoria = (categoria) => {
         return (console.log(error))
     }
 }
-export const buscarCategoriaporId = (id) => {
+export const buscarCategoriaporId = async(id) => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories/"+id)
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/categories/${id}`)
         return consulta
     } catch (error) {
         return (console.log(error))
     }
 }
-export const listarCategorias = () => {
+export const listarCategorias = async() => {
     try {
-        const consulta = axios.get(process.env.EXPO_PUBLIC_API_URL+"/categories")
+        const consulta = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/categories`)
         return consulta
     } catch (error) {
         return (console.log(error))
