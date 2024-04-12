@@ -3,6 +3,7 @@ import { ActivityIndicator, Dimensions, FlatList, Text, StyleSheet, View } from 
 import Card from '../../components/Card';
 import { useState } from 'react';
 import { cargarProductos } from "../../helpers/Helpers"
+import VisualizadorProductos from '../../components/VisualizadorProductos';
 
 const Posts = ({navigation}) => {
     const [productos, setProductos] = useState("")
@@ -33,7 +34,7 @@ const Posts = ({navigation}) => {
                     </View>) :
                     ((productos.length) > 1 ?
                         (<>
-                            <View style={style.contenedorPrincipal}>
+                            {/* <View style={style.contenedorPrincipal}>
                                 <FlatList
                                     data={productos}
                                     numColumns={2}
@@ -43,7 +44,8 @@ const Posts = ({navigation}) => {
                                             <Card navigation={navigation}item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
                                         </View>
                                     )} />
-                            </View>
+                            </View> */}
+                            <VisualizadorProductos boton={boton} productos={productos}navigation={navigation}/>
                         </>) :
                         (<View>
                             <Text>No hay publicaciones para mostrar.</Text>

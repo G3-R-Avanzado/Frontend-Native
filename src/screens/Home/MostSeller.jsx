@@ -2,7 +2,7 @@ import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityI
 import Card from "../../components/Card";
 import { useEffect, useState } from "react";
 import { cargarProductos } from "../../helpers/Helpers"
-import VisualizadorProductos from "../../components/VisualizadorProductos";
+import SliderProductos from "../../components/SliderProductos";
 import Spinner from "../../components/Spinner";
 const { width: ANCHO_PANTALLA } = Dimensions.get("window")
 
@@ -29,8 +29,8 @@ const MostSeller = ({ navigation }) => {
                     carga ?
                         (<Spinner />) :
                         (<>
-                        <VisualizadorProductos boton={boton} productos={productos} navigation={navigation} />
-                        <VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>
+                        <SliderProductos boton={boton} productos={productos} navigation={navigation} />
+                        <SliderProductos boton={boton} productos={productos} navigation={navigation}/>
                         </>)
                 }
             </View>
