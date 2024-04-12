@@ -7,14 +7,12 @@ import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
 import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
-import { Login } from '../screens/Auth/Login';
-import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
 import DetailPost from '../screens/User/DetailPost';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import { logOut } from '../store/Slices/auth/authThunks';
+
 import { useDispatch, useSelector } from 'react-redux'
 import StackNavigation from './StackNavigation';
+import DetailUser from '../screens/User/DetailUser';
 
 const Drawer = createDrawerNavigator();
 
@@ -101,11 +99,11 @@ const DrawerNavigation = () => {
                     <EvilIcons name="clock" size={24} color="black" />
                 ),
             }} component={Error} />
-            <Drawer.Screen name="Mi cuenta" options={{
+            {/* <Drawer.Screen name="Mi cuenta" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="account-circle-outline" size={24} color="black" />
                 ),
-            }} component={Error} />
+            }} component={Error} /> */}
             <Drawer.Screen name="Ayuda" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialIcons name="support-agent" size={24} color="black" />
@@ -141,6 +139,8 @@ const DrawerNavigation = () => {
                     <FontAwesome name="list-alt" size={24} color="black" />
                 ),
             }} component={Error} />
+
+            <Drawer.Screen name="Mi cuenta" component={DetailUser}/>    
             <Drawer.Screen name="Cerrar sesion" component={StackNavigation} options={{headerShown: false}}/>
             <Drawer.Screen name="Acerca de Mercado Libre" component={Error} />
         </Drawer.Navigator>

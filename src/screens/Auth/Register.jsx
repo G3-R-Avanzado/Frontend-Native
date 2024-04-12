@@ -4,36 +4,32 @@ import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { styleAuth } from './styleAuth';
-import { validationRegisterUser } from '../../helpers/Helpers';
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../store/Slices/auth/authThunks';
+import { validationRegisterUser } from '../../config/schemas';
 
-
-export const Register = () => {
+const Register = ({user, showLogo, textConfirm}) => {
     const dispatch = useDispatch();
-    const {isLogged} = useSelector((store)=>store.auth)
+
+    console.log(user);
 
     const initialValues = {
-        name: 'Agustin Sanchez',
-        username: 'agustinSanchez',
-        email: 'agustinSanchez@gmail.com',
-        picture: 'imagen de prueba',
-        password: '123456789'
+        name: user.name ? user.name : 'Agustin Sanchez',
+        username: user.username ? user.username : 'agustinSanchez',
+        email: user.email ? user.email : 'agustinSanchez@gmail.com',
+        picture: user.picture ? user.picture : 'imagen de prueba',
+        password: user.password ? user.password :'123456789'
     }
 
     const handleSubmitFormik = (values) => {
         dispatch(register(values))
     }
 
-    useEffect(()=>{
-        isLogged && console.log("logeado");
-    },[isLogged])
-
     return (
         <KeyboardAvoidingView style={{flex: 1}} behavior="padding"> 
             <ScrollView contentContainerStyle={{flexGrow: 1}}>
                 <View style={[styleAuth.container, style.containerRegister]}>
-
+                    {showLogo && 
                     <View style={style.img}>
                         <Image
                             source={Logo}
@@ -43,7 +39,8 @@ export const Register = () => {
                             }}
                         />
                         <Text style={styleAuth.title}>TucuLibre</Text>
-                    </View>
+                    </View>}
+
                     <View style={style.form}>
                         <Formik
                             initialValues={initialValues}
@@ -106,7 +103,7 @@ export const Register = () => {
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                                     <CustomButton
-                                        text={'Registrar'}
+                                        text={textConfirm}
                                         onClick={handleSubmit}
                                         color='white'
                                     />
@@ -125,6 +122,12 @@ export const Register = () => {
     );
 };
 
+Register.defaultProps = {
+    user:{},
+    showLogo: true,
+    textConfirm: 'Registrar'
+}
+
 const style = StyleSheet.create({
     containerRegister: {
         justifyContent: 'center',
@@ -140,3 +143,5 @@ const style = StyleSheet.create({
         width: '100%'
     }
 });
+
+export default Register;

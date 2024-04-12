@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack'
 import { Login } from '../screens/Auth/Login';
-import { Register } from '../screens/Auth/Register';
+import Register from '../screens/Auth/Register';
 import DrawerNavigation from './DrawerNavigation';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';

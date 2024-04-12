@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+/* const initialState = {
     user: {
         username: "Agustin",
         email: "asdasdasd@gmail.com",
@@ -12,9 +12,9 @@ const initialState = {
     isLogged: true,
     token: "sdfsdfsdf",
     message: null
-}  
+}   */
 
-/* const initialState = {
+const initialState = {
     user: {
         name: null,
         username: null,
@@ -26,7 +26,7 @@ const initialState = {
     },
     isLogged: false,
     message: null
-} */
+}
 
 export const authSlice = createSlice({
     name: 'auth',

@@ -16,6 +16,7 @@ export const getLogin = (email, password) => {
                 email: email,
                 password: password
             })
+            axiosAuth.defaults.headers.common['token'] = data.token;
             dispatch(login({
                 user: data,
             })) 
@@ -46,7 +47,7 @@ export const register = (newUser) => {
                 user: data,
             })) 
         } catch (error) {
-            console.log(error.response.data);
+            //console.log(error.response.data);
             dispatch(messageError({message: error.response.data}))
         }
     }

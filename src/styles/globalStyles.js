@@ -67,3 +67,16 @@ export const stylesNavegation = StyleSheet.create({
         borderRadius: 50,
     }
 });
+
+export const globalStyles = StyleSheet.create({
+    container:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 4
+    },title: {
+        fontSize: 40,
+        fontWeight: 'bold'
+    }
+})
+
