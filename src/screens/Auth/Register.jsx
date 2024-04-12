@@ -89,7 +89,6 @@ export const Register = () => {
                                             onChangeText={handleChange('picture')}
                                             onBlur={handleBlur('picture')}
                                         />
-
                                     </View>
                                     <View>
                                         <TextInput
@@ -101,7 +100,6 @@ export const Register = () => {
                                         />
                                         {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
                                     </View>
-
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                                     <CustomButton
@@ -114,7 +112,6 @@ export const Register = () => {
                         )}
                         </Formik>
                     </View>
-                    
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>

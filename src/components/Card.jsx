@@ -13,7 +13,11 @@ const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
         }
     }, [])
     const onPress = () => {
-        navigation.navigate('DetailProduct', { selectedItem: item });
+        if(boton=="Ver detalle"){
+            navigation.navigate('DetailProduct', { selectedItem: item });
+        }else{
+            navigation.navigate('DetailPost', { selectedItem: item });
+        }
     };
     return (
         <View  style={[styles.container]}>
