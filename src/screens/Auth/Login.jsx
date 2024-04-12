@@ -65,7 +65,6 @@ export const Login = () => {
                     </>
                 )}
                 </Formik>
-
                 <TouchableOpacity onPress={() => { console.log("Olvidate tu contraseña"); }}>
                     <Text style={{ textAlign: 'center' }}>Olvidate tu contraseña?</Text>
                 </TouchableOpacity>

@@ -21,7 +21,7 @@ const DetailPost = ({item}) => {
                     <View style={style.form}>
                         <Formik
                             initialValues={{}}
-                            onSubmit={{}}
+                            onSubmit={(values)=>console.log(values)}
                             validationSchema={{}}
                         >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                             <>
