@@ -14,13 +14,9 @@ export const Login = () => {
     const navigation = useNavigation();
 
     const initialValues = {
-        email: 'g3admin@gmail.com',
-        password: 'g3-admin'
+        email: 'agustinSanchez@gmail.com',
+        password: '123456789'
     }
-    // const initialValues = {
-    //     email: '',
-    //     password: ''
-    // }
 
     const handleLoginFormik = (values) => {
         dispatch(getLogin(values.email, values.password))

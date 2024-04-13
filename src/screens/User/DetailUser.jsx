@@ -1,29 +1,19 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image } from 'react-native';
 import { StyleSheet } from "react-native";
 import { globalStyles } from '../../styles/globalStyles';
-import InputImage from '../../components/ui/InputImage';
-import { useSelector } from 'react-redux'
 import Register  from '../Auth/Register';
 
+
+import { convertImageToBase64, convertBase64ToImage } from '../../helpers/Helpers';
+
+
+
 const DetailUser = () => {
-    const {user} = useSelector((store)=>store.auth)
-
-    console.log(user);
-
     return (
         <View style={[globalStyles.container]}>
-            <View style={{flex:1, flexDirection: 'row', width: '100%', padding: 2}}>
-                <View style={style.imgTitle}>
-                    <InputImage/>
-                </View>
-                <View style={style.detailTitle}>
-                    <Text style={globalStyles.title}>{user.name}</Text>
-                </View>
-            </View>
             <View style={{flex:4, width: '100%'}}>
                 <Register
-                    user={user}
                     showLogo={false}
                     textConfirm={'Actualizar Datos'}   
                 />
