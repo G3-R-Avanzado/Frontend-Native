@@ -11,6 +11,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import StackNavigation from './src/navegations/StackNavigation';
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
+import * as Svg from 'react-native-svg';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
