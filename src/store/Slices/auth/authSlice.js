@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-/* const initialState = {
+const initialState = {
     user: {
         username: "Agustin",
         email: "asdasdasd@gmail.com",
@@ -12,10 +12,11 @@ import { createSlice } from "@reduxjs/toolkit";
     isLogged: true,
     token: "sdfsdfsdf",
     message: null
-}   */
+}  
 
-const initialState = {
+/* const initialState = {
     user: {
+        name: null,
         username: null,
         email: null,
         rol: null,
@@ -24,48 +25,41 @@ const initialState = {
         updateAt: null
     },
     isLogged: false,
-    token: null,
     message: null
-}  
+} */
 
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,
     reducers: {
         login: (state, action) => {
-            state.user = action.payload.user,
-            state.token = action.payload.token,
+            state.user = action.payload.user
             state.isLogged = true,
-            state.rol=action.payload.user.rol
-            state.message={
-                type:"success",
-                text:"Iniciaste sesión"
-            } 
-        }, 
+            state.message = {
+                type: "success",
+                text: "Iniciaste sesión"
+            }
+        },
         logout: (state) => {
             state.user = {
+                name: null,
                 username: null,
                 email: null,
                 rol: null,
                 id: null,
-                rol:null,
                 createdAt: null,
                 updateAt: null
             },
-            state.token = null,
             state.isLogged = false,
-            state.message={
-                type:"success",
-                text:"Cerraste sesión"
-            } 
+            state.message = null;
         },
         messageError: (state, action) => {
-            state.message ={
-                type:"error",
-                text:action.payload.message
-            } 
+            state.message = {
+                type: "error",
+                text: action.payload.message
+            }
         }
-    } 
+    }
 });
 
-export const {login, logout, messageError} = authSlice.actions;
+export const { login, logout, messageError } = authSlice.actions;
