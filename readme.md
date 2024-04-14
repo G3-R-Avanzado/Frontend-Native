@@ -6,7 +6,7 @@
 2. Ingresar al directorio del proyecto `cd Frontend-Native`
 3. Instalar las dependencias `npm i`
 4. Levantar el proyecto `npm run dev`
-### Teconlogías
+### Tecnologías
 - [React Native](https://reactnative.dev/)
 - [React navigation](https://reactnavigation.org/)
 - [Redux tool kit](https://redux-toolkit.js.org/)
