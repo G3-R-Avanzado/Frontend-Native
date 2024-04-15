@@ -1,35 +1,44 @@
-
 import HomeScreen from '../screens/Home/HomeScreen';
 import { Text, TextInput, View, StyleSheet, ScrollView, ActivityIndicatorComponent } from 'react-native';
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { useState } from 'react';
 import { stylesNavegation } from '../styles/globalStyles';
 import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
-import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons'; <FontAwesome6 name="house-chimney" size={24} color="black" />
+import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
+import { Login } from '../screens/Auth/Login';
+import { Register } from '../screens/Auth/Register';
+import Posts from '../screens/User/Posts';
+import DetailPost from '../screens/User/DetailPost';
 
+import { useDispatch, useSelector } from 'react-redux'
+import StackNavigation from './StackNavigation';
+import DetailProduct from '../screens/Product/DetailProduct';
+import DetailUser from '../screens/User/DetailUser';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
-    const icono = (<EvilIcons name="search" size={24} color="black" />);
-
+    const dispatch = useDispatch();
 
     return (
-        <Drawer.Navigator screenOptions={{
-            headerTintColor: 'black',
-            drawerContentContainerStyle: {
-                backgroundColor: '#FFE600',
-            },
-            headerTitleAlign: 'center',
-            headerStyle: {
-                backgroundColor: '#FFE600',
-                borderBottomWidth: 1,
-            },
-        }}
-        >
-            <Drawer.Screen name="Inicio" component={HomeScreen}
+        <Drawer.Navigator
+            screenOptions={{
+                headerTintColor: 'black',
+                drawerContentContainerStyle: {
+                    backgroundColor: '#FFE600',
+                },
+                headerTitleAlign: 'center',
+                headerStyle: {
+                    backgroundColor: '#FFE600',
+                    borderBottomWidth: 1,
+                },
+            }}>
+            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{}} />
+            <Drawer.Screen
+                name="Inicio"
+                component={HomeScreen}
                 options={{
                     drawerIcon: ({ focused, color, size }) => (
                         <FontAwesome6 name="house-chimney" size={24} color="black" />
@@ -37,9 +46,12 @@ const DrawerNavigation = () => {
                     headerTitle: (props) => (
                         <View style={stylesNavegation.navigatorContainer}>
                             <Buscador />
-                        </View>)
+                        </View>
+                    ),
                 }}
-            />
+                >
+            </Drawer.Screen>
+            
             <Drawer.Screen name="Buscar" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <EvilIcons name="search" size={size} color={color} />
@@ -90,11 +102,11 @@ const DrawerNavigation = () => {
                     <EvilIcons name="clock" size={24} color="black" />
                 ),
             }} component={Error} />
-            <Drawer.Screen name="Mi cuenta" options={{
+            {/* <Drawer.Screen name="Mi cuenta" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="account-circle-outline" size={24} color="black" />
                 ),
-            }} component={Error} />
+            }} component={Error} /> */}
             <Drawer.Screen name="Ayuda" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialIcons name="support-agent" size={24} color="black" />
@@ -110,7 +122,6 @@ const DrawerNavigation = () => {
                     <MaterialCommunityIcons name="star-shooting-outline" size={24} color="black" />
                 ),
             }} component={Error} />
-
             <Drawer.Screen name="Categorías" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialCommunityIcons name="format-list-checkbox" size={24} color="black" />
@@ -131,9 +142,17 @@ const DrawerNavigation = () => {
                     <FontAwesome name="list-alt" size={24} color="black" />
                 ),
             }} component={Error} />
+
+            <Drawer.Screen name="Mi cuenta" component={DetailUser}/>    
+            <Drawer.Screen name="Cerrar sesion" component={StackNavigation} options={{headerShown: false}}/>
             <Drawer.Screen name="Acerca de Mercado Libre" component={Error} />
         </Drawer.Navigator>
     );
 };
 
+const style = StyleSheet.create({
+    botonesOcultos: {
+        display: "none"
+    }
+})
 export default DrawerNavigation;

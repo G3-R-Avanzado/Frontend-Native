@@ -12,7 +12,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import MostSeller from './MostSeller';
 //#endregion
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
     const [busqueda, setBusqueda] = useState("")
     const buscar = (e) => {
         setBusqueda(e.target.value);
@@ -24,7 +24,6 @@ const HomeScreen = () => {
         <>
             <View style={stylesNavegation.container}>
                 <View style={stylesNavegation.CarouselContainer}>
-                    
                     <LinearGradient
                         colors={['rgba(255,230,0,1)', 'rgba(255,255,255,1)']}                    >
                         <FlatList
@@ -55,7 +54,7 @@ const HomeScreen = () => {
                     <Text> en millones de produstos desde $23.000</Text>
                 </Text>
             </View>
-            <MostSeller />
+            <MostSeller navigation={navigation} />
         </>
     );
 };

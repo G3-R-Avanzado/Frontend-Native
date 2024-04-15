@@ -5,17 +5,28 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import logo from "./assets/logo1.png"
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navegations/DrawerNavigation';
+import DetailPost from './src/screens/User/DetailPost';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import StackNavigation from './src/navegations/StackNavigation';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+import * as Svg from 'react-native-svg';
+import { AlertNotificationRoot } from 'react-native-alert-notification';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
+
+
   const bienvenida = () => {
     setBienvenida(false)
   }
+
   useEffect(() => {
     setTimeout(() => {
       bienvenida();
     }, 2000);
   }, [])
+
   if (bienvenido) {
     return (
       <View style={styles.bienvenida}>
@@ -24,12 +35,14 @@ export default function App() {
     )
   }
   return (
-    <>
+    <Provider store={store}>
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        <DrawerNavigation />
-      </NavigationContainer>      
-    </>
+        <AlertNotificationRoot>
+          <StackNavigation />
+        </AlertNotificationRoot>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
