@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+/* const initialState = {
     user: {
         username: "Agustin",
         email: "asdasdasd@gmail.com",
@@ -12,21 +12,22 @@ const initialState = {
     isLogged: true,
     token: "sdfsdfsdf",
     message: null
-}  
+}   */
 
-/* const initialState = {
+const initialState = {
     user: {
         name: null,
         username: null,
         email: null,
         rol: null,
         id: null,
+        picture: null,
         createdAt: null,
         updateAt: null
     },
     isLogged: false,
     message: null
-} */
+}
 
 export const authSlice = createSlice({
     name: 'auth',
@@ -53,6 +54,16 @@ export const authSlice = createSlice({
             state.isLogged = false,
             state.message = null;
         },
+        update: (state, action)=> {
+            state.user = {
+                name: action.payload.user.name,
+                username: action.payload.user.username,
+                email: action.payload.user.email,
+                picture: action.payload.user.picture,
+                createdAt: action.payload.user.createdAt,
+                updateAt: action.payload.user.updateAt
+            }
+        },
         messageError: (state, action) => {
             state.message = {
                 type: "error",
@@ -62,4 +73,4 @@ export const authSlice = createSlice({
     }
 });
 
-export const { login, logout, messageError } = authSlice.actions;
+export const { login, logout, messageError, update } = authSlice.actions;

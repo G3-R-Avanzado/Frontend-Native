@@ -18,23 +18,22 @@ export default function App() {
   const bienvenida = () => {
     setBienvenida(false)
   }
-  const Stack = createNativeStackNavigator();
 
   useEffect(() => {
-    setTimeout(() => {
+    setTimeout(() => { 
       bienvenida();
     }, 2000);
   }, [])
 
   if (bienvenido) {
     return (
-      <View style={styles.bienvenida}>
+      <View style={styles.bienvenida}> 
         <Image style={{ width: "50%", objectFit: "contain" }} source={logo} />
-      </View>
+      </View>  
     )
   }
   return (
-    <Provider store={store}>
+    <Provider store={store}> 
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
         <StackNavigation />

@@ -1,67 +1,81 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { styleAuth } from './styleAuth';
-import { validationRegisterUser } from '../../helpers/Helpers';
 import { useDispatch, useSelector } from 'react-redux'
-import { register } from '../../store/Slices/auth/authThunks';
+import { register, updateUser } from '../../store/Slices/auth/authThunks';
+import { validationRegisterUser, validationUpdateUser } from '../../config/schemas';
+import InputImage from '../../components/ui/InputImage';
 
+const Register = ({showLogo, textConfirm }) => {
+    const {user} = useSelector((store)=>store.auth)
 
-export const Register = () => {
+    const [image, setImage] = useState(user.picture != null ? {base64: user.picture}: null);
+
     const dispatch = useDispatch();
-    const {isLogged} = useSelector((store)=>store.auth)
 
     const initialValues = {
-        name: 'Agustin Sanchez',
-        username: 'agustinSanchez',
-        email: 'agustinSanchez@gmail.com',
-        picture: 'imagen de prueba',
-        password: '123456789'
+        name: user.name ? user.name : '',
+        username: user.username ? user.username : '',
+        email: user.email ? user.email : '',
+        password: user.password ? user.password : ''
     }
 
     const handleSubmitFormik = (values) => {
-        dispatch(register(values))
+        if(user.email!=null){
+            dispatch(updateUser({...values, picture: image != null ? image.base64 : ''}))
+        }else {
+            dispatch(register({...values, picture: image != null ? image.base64 : ''}))
+        }
     }
 
-    useEffect(()=>{
-        isLogged && console.log("logeado");
-    },[isLogged])
-
     return (
-        <KeyboardAvoidingView style={{flex: 1}} behavior="padding"> 
-            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={[styleAuth.container, style.containerRegister]}>
-
-                    <View style={style.img}>
-                        <Image
-                            source={Logo}
-                            style={{
-                                width: 200,
-                                height: 150
-                            }}
-                        />
-                        <Text style={styleAuth.title}>TucuLibre</Text>
-                    </View>
+                    {showLogo &&
+                        <View style={style.img}>
+                            <Image
+                                source={Logo}
+                                style={{
+                                    width: 200,
+                                    height: 150
+                                }}
+                            />
+                            <Text style={styleAuth.title}>TucuLibre</Text>
+                        </View>}
                     <View style={style.form}>
                         <Formik
                             initialValues={initialValues}
                             onSubmit={handleSubmitFormik}
-                            validationSchema={validationRegisterUser}
+                            validationSchema={!user.email ? validationRegisterUser : validationUpdateUser}
                         >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                             <>
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
+
                                     <View>
-                                        <TextInput
-                                            style={styleAuth.input}
-                                            placeholder={'Nombre'}
-                                            value={values.name}
-                                            onChangeText={handleChange('name')}
-                                            onBlur={handleBlur('name')}
-                                        />
-                                        {errors.name && touched.name && <Text style={{ color: 'red' }}>{errors.name}</Text>}
+                                        <View style={{flex:1, flexDirection: 'row'}}>
+                                            <View style={style.inputImage}>
+                                                <InputImage 
+                                                    image={image}
+                                                    setImage={setImage}
+                                                />
+                                            </View>
+                                            <View style={{flex: 5, justifyContent: 'center', paddingLeft: 5}}>
+                                                <TextInput
+                                                    style={styleAuth.input}
+                                                    placeholder={'Nombre'}
+                                                    value={values.name}
+                                                    onChangeText={handleChange('name')}
+                                                    onBlur={handleBlur('name')}
+                                                />
+                                                {errors.name && touched.name && <Text style={{ color: 'red' }}>{errors.name}</Text>}
+                                            </View>
+                                        </View>
                                     </View>
+
                                     <View>
                                         <TextInput
                                             style={styleAuth.input}
@@ -82,31 +96,23 @@ export const Register = () => {
                                         />
                                         {errors.email && touched.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
                                     </View>
-                                    <View>
-                                        <TextInput
-                                            style={styleAuth.input}
-                                            placeholder={'Imagen'}
-                                            value={values.picture}
-                                            onChangeText={handleChange('picture')}
-                                            onBlur={handleBlur('picture')}
-                                        />
-
-                                    </View>
-                                    <View>
+                                    {!user.email && <View>
                                         <TextInput
                                             style={styleAuth.input}
                                             placeholder={'Contraseña'}
                                             value={values.password}
                                             onChangeText={handleChange('password')}
+                                            secureTextEntry={true}
                                             onBlur={handleBlur('password')}
                                         />
                                         {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
-                                    </View>
+                                    </View>}
+                                    
 
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                                     <CustomButton
-                                        text={'Registrar'}
+                                        text={textConfirm}
                                         onClick={handleSubmit}
                                         color='white'
                                     />
@@ -116,7 +122,7 @@ export const Register = () => {
                         </Formik>
                     </View>
 
-                    
+
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
@@ -124,6 +130,11 @@ export const Register = () => {
 
     );
 };
+
+Register.defaultProps = {
+    showLogo: true,
+    textConfirm: 'Registrar'
+}
 
 const style = StyleSheet.create({
     containerRegister: {
@@ -138,5 +149,12 @@ const style = StyleSheet.create({
     form: {
         flex: 2,
         width: '100%'
+    },
+    inputImage: {
+        width: 100,
+        height: 100, 
+        flex: 2
     }
 });
+
+export default Register;

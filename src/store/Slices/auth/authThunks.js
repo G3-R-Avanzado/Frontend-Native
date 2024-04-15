@@ -1,4 +1,4 @@
-import { login, logout, messageError } from "./authSlice";
+import { login, logout, messageError, update } from "./authSlice";
 import { Roles } from "../../../types/types";
 import { axiosAuth } from "../../../config/axiosApi";
 
@@ -16,6 +16,7 @@ export const getLogin = (email, password) => {
                 email: email,
                 password: password
             })
+            axiosAuth.defaults.headers.common['token'] = data.token;
             dispatch(login({
                 user: data,
             })) 
@@ -46,7 +47,22 @@ export const register = (newUser) => {
                 user: data,
             })) 
         } catch (error) {
-            console.log(error.response.data);
+            console.log(error.response);
+            dispatch(messageError({message: error.response.data}))
+        }
+    }
+}
+
+export const updateUser = (userUpdate) => {
+    return async (dispatch) => { 
+        try {
+            const {data} = await axiosAuth.post('/update', userUpdate);
+            console.log(data, 'data thunks');
+            dispatch(update({
+                user: data,
+            })) 
+        } catch (error) {
+            console.log(error);
             dispatch(messageError({message: error.response.data}))
         }
     }

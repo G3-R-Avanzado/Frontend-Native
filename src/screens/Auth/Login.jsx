@@ -4,19 +4,20 @@ import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { useNavigation } from '@react-navigation/native';
-import { validationAuthUser } from '../../helpers/Helpers';
 import { styleAuth } from './styleAuth';
-
 import { useDispatch, useSelector } from 'react-redux'
 import { getLogin } from '../../store/Slices/auth/authThunks';
+import { validationAuthUser } from '../../config/schemas';  
 
 export const Login = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
+
     const initialValues = {
-        email: 'g3admin@gmail.com',
-        password: 'g3-admin'
+        email: 'agustinSanchez@gmail.com',
+        password: '123456789'
     }
+
     const handleLoginFormik = (values) => {
         dispatch(getLogin(values.email, values.password))
     }
