@@ -6,38 +6,42 @@ import logo from "./assets/logo1.png"
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerNavigation from './src/navegations/DrawerNavigation';
 import DetailPost from './src/screens/User/DetailPost';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StackNavigation from './src/navegations/StackNavigation';
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
 import * as Svg from 'react-native-svg';
+import { AlertNotificationRoot } from 'react-native-alert-notification';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
+
 
   const bienvenida = () => {
     setBienvenida(false)
   }
 
   useEffect(() => {
-    setTimeout(() => { 
+    setTimeout(() => {
       bienvenida();
     }, 2000);
   }, [])
 
   if (bienvenido) {
     return (
-      <View style={styles.bienvenida}> 
+      <View style={styles.bienvenida}>
         <Image style={{ width: "50%", objectFit: "contain" }} source={logo} />
-      </View>  
+      </View>
     )
   }
   return (
-    <Provider store={store}> 
+    <Provider store={store}>
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        <StackNavigation/>
-      </NavigationContainer>      
+        
+          <StackNavigation />
+        
+      </NavigationContainer>
     </Provider>
   );
 }
