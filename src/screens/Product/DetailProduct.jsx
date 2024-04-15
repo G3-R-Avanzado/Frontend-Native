@@ -2,8 +2,6 @@ import { View, ScrollView, Text, Image, Button, StyleSheet, FlatList } from 'rea
 import { imagesSVG } from '../../styles/globalStyles';
 import { Ionicons } from '@expo/vector-icons';
 import ShopCards from "./ShopCards"
-
-
 import mercadocredito from "../../../assets/tarjetas/mercadoCredito.png"
 import amercanExpress from "../../../assets/tarjetas/americanExpress.png"
 import argencard from "../../../assets/tarjetas/argencard.png"
@@ -24,6 +22,8 @@ import rapipago from "../../../assets/tarjetas/rapipago.png"
 import shopping from "../../../assets/tarjetas/shopping.png"
 import visa from "../../../assets/tarjetas/visa.png"
 import visaDebito from "../../../assets/tarjetas/visaDebito.png"
+
+
 const DetailProduct = ({ route }) => {
     const { selectedItem } = route.params;
     return (

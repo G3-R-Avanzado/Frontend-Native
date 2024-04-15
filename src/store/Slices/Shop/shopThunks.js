@@ -1,4 +1,4 @@
-import { add } from "./carrySlice"
+import { add } from "./shopSlice"
 
 
 export const addProduct = (product) => {
