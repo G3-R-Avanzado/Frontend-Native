@@ -7,12 +7,14 @@ import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
 import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
+import { Login } from '../screens/Auth/Login';
+import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
 import DetailPost from '../screens/User/DetailPost';
 
 import { useDispatch, useSelector } from 'react-redux'
 import StackNavigation from './StackNavigation';
-import DetailUser from '../screens/User/DetailUser';
+import DetailProduct from '../screens/Product/DetailProduct';
 
 const Drawer = createDrawerNavigator();
 
@@ -32,8 +34,10 @@ const DrawerNavigation = () => {
                     borderBottomWidth: 1,
                 },
             }}>
-            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{}}/>
-            <Drawer.Screen name="Inicio" component={HomeScreen}
+            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{}} />
+            <Drawer.Screen
+                name="Inicio"
+                component={HomeScreen}
                 options={{
                     drawerIcon: ({ focused, color, size }) => (
                         <FontAwesome6 name="house-chimney" size={24} color="black" />
@@ -41,14 +45,12 @@ const DrawerNavigation = () => {
                     headerTitle: (props) => (
                         <View style={stylesNavegation.navigatorContainer}>
                             <Buscador />
-                        </View>)
+                        </View>
+                    ),
                 }}
-            />
-            <Drawer.Screen
-                name="DetailPost"
-                component={DetailPost} 
-                style={style.botonesOcultos}
-            />
+                >
+            </Drawer.Screen>
+            
             <Drawer.Screen name="Buscar" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <EvilIcons name="search" size={size} color={color} />
@@ -147,9 +149,9 @@ const DrawerNavigation = () => {
     );
 };
 
-const style= StyleSheet.create({
-    botonesOcultos:{
-        display:"none"
+const style = StyleSheet.create({
+    botonesOcultos: {
+        display: "none"
     }
 })
 export default DrawerNavigation;

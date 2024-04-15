@@ -2,19 +2,12 @@ import { login, logout, messageError, update } from "./authSlice";
 import { Roles } from "../../../types/types";
 import { axiosAuth } from "../../../config/axiosApi";
 
-// const redireccionar=()=>{
-//     const navigate = useNavigate()
-//     const rol=localStorage.getItem("rol")/* ==Roles.User?navigate("/user"):navigate("/admin") */
-//     console.log(rol);
-// }
-
-
 export const getLogin = (email, password) => {
     return async (dispatch) => {
         try {
             const {data} = await axiosAuth.post('/login', {
                 email: email,
-                password: password
+                password: password,
             })
             axiosAuth.defaults.headers.common['token'] = data.token;
             dispatch(login({

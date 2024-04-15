@@ -59,21 +59,20 @@ export const Login = () => {
                         />
                         {errors.password && touched.password && <Text style={{color: 'red'}}>{errors.password}</Text>}
                         <CustomButton
-                            text={'Login'}
+                            text={'Iniciar sesión'}
                             onClick={handleSubmit}
                             color='white'
                         />
                     </>
                 )}
                 </Formik>
-
                 <TouchableOpacity onPress={() => { console.log("Olvidate tu contraseña"); }}>
                     <Text style={{ textAlign: 'center' }}>Olvidate tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
             <View style={style.register}>
                 <CustomButton
-                    text={'Register'}
+                    text={'Registrarme'}
                     onClick={()=>navigation.navigate('Register')}
                     color='white'
                 />

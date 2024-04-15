@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
+import DetailProduct from "../screens/Product/DetailProduct";
 
 const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
-
+    
     useEffect(() => {
         if (boton == "Gestionar") {
 
         } else {
-
+            
         }
     }, [])
     const onPress = () => {
-
-    }
+        if(boton=="Ver detalle"){
+            navigation.navigate('DetailProduct', { selectedItem: item });
+        }else{
+            navigation.navigate('DetailPost', { selectedItem: item });
+        }
+    };
     return (
         <View  style={[styles.container]}>
-            
-                <Image style={styles.imagen} source={{ uri: item.Image }} />
-                <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.Description}</Text>
-                <Text style={styles.nombre}>{item.Titulo}</Text>
-                <Text>{item.Price}$</Text>
-                <TouchableHighlight  style={styles.button} onPress={() =>navigation.navigate("DetailPost")} >
+                <Image style={styles.imagen} source={{ uri: item.image }} />
+                <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.description}</Text>
+                <Text style={styles.nombre}>{item.titulo}</Text>
+                <Text>{item.price}$</Text>
+                <TouchableHighlight  style={styles.button} onPress={onPress}>
                 <View>
                     <Text style={styles.ContenidoBoton}>{boton}</Text>
                 </View>
                 </TouchableHighlight>
-            
         </View>
     );
 };
