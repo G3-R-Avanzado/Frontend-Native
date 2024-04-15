@@ -2,6 +2,8 @@ import { login, logout, messageError, update } from "./authSlice";
 import { Roles } from "../../../types/types";
 import { axiosAuth } from "../../../config/axiosApi";
 
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
+
 export const getLogin = (email, password) => {
     return async (dispatch) => {
         try {
@@ -13,6 +15,11 @@ export const getLogin = (email, password) => {
             dispatch(login({
                 user: data,
             })) 
+            
+            Dialog.show({
+                type: ALERT_TYPE.SUCCESS,
+                title: 'Usuario logeado con exito',
+            })
         } catch (error) {
             console.log(error.response.data);
             dispatch(messageError({message: error.response.data}))

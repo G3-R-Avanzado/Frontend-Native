@@ -8,7 +8,7 @@ import { validationPublication } from '../../config/schemas';
 import { modificarProducto } from '../../helpers/Helpers';
 import { useNavigation } from '@react-navigation/native';
 
-import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
 
 
 const DetailPost = ({ item, route }) => {
