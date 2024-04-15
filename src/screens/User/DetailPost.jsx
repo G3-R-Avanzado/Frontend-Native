@@ -4,26 +4,36 @@ import { StyleSheet, View, Text, TextInput, Image, ScrollView, KeyboardAvoidingV
 import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import { styleAuth } from '../Auth/styleAuth';
+import { validationPublication } from '../../config/schemas';
 
-const DetailPost = ({item}) => {
+const DetailPost = ({ item, route }) => {
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
-    
+
     const { selectedItem } = route.params;
 
-    useEffect(()=>{
-        
-    },[])
+    const initialValues = {
+        titulo: selectedItem.titulo,
+        description: selectedItem.description,
+        image: selectedItem.image,
+        price: selectedItem.price.toString(),
+        category: selectedItem.category
+    }
+
+    const handleSubmitFormik = (values)=>{
+        values.price = parseInt(values.price);
+        //mandar a base de datos
+    }
 
     return (
-        <KeyboardAvoidingView style={{flex: 1}} behavior="padding"> 
-            <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={[styleAuth.container, style.containerRegister]}>
                     <View style={style.form}>
                         <Formik
-                            initialValues={selectedItem}
-                            onSubmit={(values)=>console.log("")}
-                            validationSchema={{}}
+                            initialValues={initialValues}
+                            onSubmit={handleSubmitFormik}
+                            validationSchema={validationPublication}
                         >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                             <>
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
@@ -31,55 +41,60 @@ const DetailPost = ({item}) => {
                                         <Text>Titulo de publicacion</Text>
                                         <TextInput
                                             style={styleAuth.input}
+                                            name="Titulo"
                                             placeholder={'Pj. Reloj Smartwatch U8'}
                                             value={values.titulo}
-                                            onChangeText={handleChange('name')}
-                                            onBlur={handleBlur('name')}
+                                            onChangeText={handleChange('titulo')}
+                                            onBlur={handleBlur('titulo')}
                                         />
-                                        {errors.name && touched.name && <Text style={{ color: 'red' }}>{errors.name}</Text>}
+                                        {errors.titulo && touched.titulo && <Text style={{ color: 'red' }}>{errors.titulo}</Text>}
                                     </View>
                                     <View>
-                                    <Text>Descripcion</Text>
+                                        <Text>Descripcion</Text>
                                         <TextInput
                                             style={styleAuth.input}
+                                            name="description"
                                             placeholder={'Pj. Caracteristicas, ficha técnica , estado... etc'}
-                                            value={values.username}
-                                            onChangeText={handleChange('username')}
-                                            onBlur={handleBlur('username')}
+                                            value={values.description}
+                                            onChangeText={handleChange('description')}
+                                            onBlur={handleBlur('description')}
                                         />
-                                        {errors.username && touched.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
+                                        {errors.description && touched.description && <Text style={{ color: 'red' }}>{errors.description}</Text>}
                                     </View>
                                     <View>
-                                    <Text>Imagen</Text>
+                                        <Text>Imagen</Text>
                                         <TextInput
                                             style={styleAuth.input}
+                                            name="image"
                                             placeholder={'Ingrese URL de la imagen de su producto'}
-                                            value={values.email}
-                                            onChangeText={handleChange('email')}
-                                            onBlur={handleBlur('email')}
+                                            value={values.image}
+                                            onChangeText={handleChange('image')}
+                                            onBlur={handleBlur('image')}
                                         />
-                                        {errors.email && touched.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
+                                        {errors.image && touched.image && <Text style={{ color: 'red' }}>{errors.image}</Text>}
                                     </View>
                                     <View>
-                                    <Text>Precio</Text>
+                                        <Text>Precio</Text>
                                         <TextInput
                                             style={styleAuth.input}
-                                            placeholder={'Pj. 5000$'}
-                                            value={values.picture}
-                                            onChangeText={handleChange('picture')}
-                                            onBlur={handleBlur('picture')}
+                                            name="price"
+                                            value={values.price}
+                                            onChangeText={handleChange('price')}
+                                            onBlur={handleBlur('price')}
                                         />
+
+                                        {errors.price && touched.price && <Text style={{ color: 'red' }}>{errors.price}</Text>}
                                     </View>
                                     <View>
-                                    <Text>Categoria</Text>
+                                        <Text>Categoria</Text>
                                         <TextInput
                                             style={styleAuth.input}
-                                            placeholder={'Categoria'}
-                                            value={values.password}
-                                            onChangeText={handleChange('password')}
-                                            onBlur={handleBlur('password')}
+                                            placeholder={'category'}
+                                            value={values.category}
+                                            onChangeText={handleChange('category')}
+                                            onBlur={handleBlur('category')}
                                         />
-                                        {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
+                                        {errors.category && touched.category && <Text style={{ color: 'red' }}>{errors.category}</Text>}
                                     </View>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>

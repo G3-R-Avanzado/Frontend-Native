@@ -15,6 +15,7 @@ import DetailPost from '../screens/User/DetailPost';
 import { useDispatch, useSelector } from 'react-redux'
 import StackNavigation from './StackNavigation';
 import DetailProduct from '../screens/Product/DetailProduct';
+import DetailUser from '../screens/User/DetailUser';
 
 const Drawer = createDrawerNavigator();
 
