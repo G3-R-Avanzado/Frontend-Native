@@ -12,6 +12,7 @@ import StackNavigation from './src/navegations/StackNavigation';
 import { Provider } from 'react-redux';
 import { store } from './src/store/store';
 import * as Svg from 'react-native-svg';
+import { AlertNotificationRoot } from 'react-native-alert-notification';
 
 export default function App() {
   const [bienvenido, setBienvenida] = useState(true)
@@ -37,7 +38,9 @@ export default function App() {
     <Provider store={store}> 
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        <StackNavigation/>
+        <AlertNotificationRoot>
+          <StackNavigation/>
+        </AlertNotificationRoot>
       </NavigationContainer>      
     </Provider>
   );

@@ -5,10 +5,16 @@ import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import { styleAuth } from '../Auth/styleAuth';
 import { validationPublication } from '../../config/schemas';
+import { modificarProducto } from '../../helpers/Helpers';
+import { useNavigation } from '@react-navigation/native';
+
+import { ALERT_TYPE, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+
 
 const DetailPost = ({ item, route }) => {
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
+    const navigation = useNavigation();
 
     const { selectedItem } = route.params;
 
@@ -20,14 +26,26 @@ const DetailPost = ({ item, route }) => {
         category: selectedItem.category
     }
 
-    const handleSubmitFormik = (values)=>{
-        values.price = parseInt(values.price);
-        //mandar a base de datos
+    const handleSubmitFormik = async (values)=>{
+        modificarProducto({...values, 
+            ["price"]: parseInt(values.price),
+            ["user"]: selectedItem.user,
+            ["status"]: selectedItem.status,
+            ["_id"]: selectedItem._id
+        }).then(()=>{
+            Toast.show({
+                type: ALERT_TYPE.SUCCESS,
+                title: 'Publicacion modificada con exito',
+            })
+            navigation.navigate('Mis publicaciones')
+        });
+        
     }
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                
                 <View style={[styleAuth.container, style.containerRegister]}>
                     <View style={style.form}>
                         <Formik
@@ -109,6 +127,7 @@ const DetailPost = ({ item, route }) => {
                         </Formik>
                     </View>
                 </View>
+                
             </ScrollView>
         </KeyboardAvoidingView>
     );
