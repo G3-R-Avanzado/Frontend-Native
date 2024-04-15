@@ -67,14 +67,14 @@ export const crearProducto = async(producto) => {
 export const modificarProducto = async(producto) => {
     try {
         const consulta = await axios.put(`${process.env.EXPO_PUBLIC_API_URL}/publication/update`, {
-            _id: producto.id,
+            _id: producto._id,
             titulo: producto.titulo,
-            description: producto.descripcion,
-            image: producto.imagen,
-            price: producto.precio,
-            category: producto.categoria,
-            status: producto.estado,
-            user: producto.usuario
+            description: producto.description,
+            image: producto.image,
+            price: producto.price,
+            category: producto.category,
+            status: producto.status,
+            user: producto.user
         })
         return consulta
     } catch (error) {

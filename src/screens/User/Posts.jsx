@@ -16,17 +16,15 @@ const Posts = ({navigation}) => {
     useEffect(() => {
         buscarProductoPorUsuario(user.id).then((resp) => {
             if (resp.status == 200) {
-                /* const publicaciones = (resp.data).filter((item) => item.id === "1");
-                console.log(publicaciones); */
                 const publicaciones = resp.data
                 setProductos(publicaciones)
                 setCarga(false)
             } else {
                 setCarga(false)
-                //mensaje de error al cargar
             }
         })
     }, [])
+    
     return (
         <View>
             {

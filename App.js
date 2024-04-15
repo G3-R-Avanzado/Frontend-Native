@@ -38,9 +38,9 @@ export default function App() {
     <Provider store={store}>
       <StatusBar style="auto" />
       <NavigationContainer style={styles.container}>
-        
+        <AlertNotificationRoot>
           <StackNavigation />
-        
+        </AlertNotificationRoot>
       </NavigationContainer>
     </Provider>
   );
