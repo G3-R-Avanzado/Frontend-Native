@@ -6,16 +6,16 @@ import { stylesNavegation } from '../styles/globalStyles';
 import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
-import { FontAwesome6, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
+import { FontAwesome6,SimpleLineIcons, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
 import { Login } from '../screens/Auth/Login';
 import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
 import DetailPost from '../screens/User/DetailPost';
-
 import { useDispatch, useSelector } from 'react-redux'
 import StackNavigation from './StackNavigation';
 import DetailProduct from '../screens/Product/DetailProduct';
 import DetailUser from '../screens/User/DetailUser';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -35,7 +35,6 @@ const DrawerNavigation = () => {
                     borderBottomWidth: 1,
                 },
             }}>
-            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{}} />
             <Drawer.Screen
                 name="Inicio"
                 component={HomeScreen}
@@ -63,11 +62,11 @@ const DrawerNavigation = () => {
                     <FontAwesome name="bell-o" size={24} color="black" />
                 ),
             }} component={Error} />
-            <Drawer.Screen name="Mis compras" options={{
+            <Drawer.Screen name="Mis publicaciones" component={Posts} options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <Ionicons name="bag-handle-outline" size={24} color="black" />
                 ),
-            }} component={Error} />
+            }} />
             <Drawer.Screen name="Favoritos" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <AntDesign name="hearto" size={24} color="black" />
@@ -143,8 +142,16 @@ const DrawerNavigation = () => {
                 ),
             }} component={Error} />
 
-            <Drawer.Screen name="Mi cuenta" component={DetailUser}/>    
-            <Drawer.Screen name="Cerrar sesion" component={StackNavigation} options={{headerShown: false}}/>
+            <Drawer.Screen name="Mi cuenta" component={DetailUser} options={{
+                drawerIcon:()=>(
+                    <MaterialCommunityIcons name="account-circle-outline" size={24} color="black" />
+                )
+            }}/>    
+            <Drawer.Screen name="Cerrar sesion" component={StackNavigation} options={{
+                drawerIcon:()=>(
+                    <SimpleLineIcons name="logout" size={24} color="black" />
+                ),
+                headerShown: false}}/>
             <Drawer.Screen name="Acerca de Mercado Libre" component={Error} />
         </Drawer.Navigator>
     );
