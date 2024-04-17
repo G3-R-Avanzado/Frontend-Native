@@ -1,5 +1,5 @@
 import { reqAxiosHook } from "../../../hooks/useAxios";
-import { updateAll, updateAllUser } from "./publicationSlice";
+import { updateAllUser } from "./publicationSlice";
 
 export const getAllPublication = () => {
     return async (dispatch) => {

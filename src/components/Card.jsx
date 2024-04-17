@@ -4,7 +4,7 @@ import DetailProduct from "../screens/Product/DetailProduct";
 
 const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
-    
+    useEffect(()=>{console.log("hola");},[])
     useEffect(() => {
         if (boton == "Gestionar") {
 

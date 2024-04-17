@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, Dimensions, FlatList, Text, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Text, StyleSheet, View } from 'react-native';
 import Card from '../../components/Card';
 import { useState } from 'react';
 import { buscarProductoPorUsuario } from "../../helpers/Helpers"
@@ -17,19 +17,6 @@ const Posts = ({navigation}) => {
     const {user} = useSelector((store)=>store.auth)
     const {publicationsUser} = useSelector((store)=>store.publication)
     const dispatch = useDispatch()
-    
-    /* useEffect(() => {
-        buscarProductoPorUsuario(user.id).then((resp) => {
-            if (resp.status == 200) {
-                const publicaciones = resp.data
-                setProductos(publicaciones)
-                setCarga(false)
-            } else {
-                setCarga(false)
-            }
-        })
-        
-    }, []) */
 
     useEffect(()=>{
         dispatch(getAllPublicationUser(user.id))
@@ -49,17 +36,6 @@ const Posts = ({navigation}) => {
                     </View>) :
                     ((productos.length) > 1 ?
                         (<>
-                            {/* <View style={style.contenedorPrincipal}>
-                                <FlatList
-                                    data={productos}
-                                    numColumns={2}
-                                    keyExtractor={(item, index) => index.toString()}
-                                    renderItem={({ item }) => (
-                                        <View style={[style.contenedorCards, { width: ANCHO_PANTALLA / 2.5 }]}>
-                                            <Card navigation={navigation}item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
-                                        </View>
-                                    )} />
-                            </View> */}
                             <VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>
                         </>) :
                         (<View>

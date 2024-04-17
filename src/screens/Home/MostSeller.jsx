@@ -1,5 +1,4 @@
-import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityIndicator, ScrollView } from "react-native";
-import Card from "../../components/Card";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { cargarProductos, listarCategorias } from "../../helpers/Helpers"
 import SliderProductos from "../../components/SliderProductos";

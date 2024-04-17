@@ -3,11 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { StyleSheet } from "react-native";
 import { globalStyles } from '../../styles/globalStyles';
 import Register  from '../Auth/Register';
-
-
 import { convertImageToBase64, convertBase64ToImage } from '../../helpers/Helpers';
-
-
 
 const DetailUser = () => {
     return (

@@ -1,10 +1,9 @@
 //#region Imports
 import * as React from 'react';
-import { Touchable, FlatList, Image, Text, View, Button, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import {FlatList, Image, Text, View,Dimensions } from 'react-native';
 import { stylesNavegation } from '../../styles/globalStyles';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
-import { TextInput } from 'react-native-gesture-handler';
 import banner1 from "../../../assets/banner1.png"
 import banner2 from "../../../assets/banner2.png"
 import banner3 from "../../../assets/banner3.png"
