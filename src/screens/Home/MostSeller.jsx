@@ -13,15 +13,12 @@ const MostSeller = ({ navigation }) => {
     useEffect(() => {
         listarCategorias().then((resp) => {
             if (resp.status == 200) {
-                console.log(resp.data);
                 const categorias = resp.data.map((item) => ({ id: item._id, name: item.name }));
-                console.log(categorias);
                 setCategoria(categorias);
             }
         })
         cargarProductos().then((resp) => {
             if (resp.status == 200) {
-                
                 setProductos(resp.data)
             } else {
                 //mensaje de error al cargar

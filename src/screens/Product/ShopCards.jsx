@@ -22,9 +22,7 @@ import shopping from "../../../assets/tarjetas/shopping.png"
 import visa from "../../../assets/tarjetas/visa.png"
 import visaDebito from "../../../assets/tarjetas/visaDebito.png"
 
-
 const ShopCards = () => {
-    useEffect(()=>{console.log("HOLA");},[])
     return (
         <View>
                 <View style={styles.container}>

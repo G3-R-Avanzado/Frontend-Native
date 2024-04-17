@@ -59,7 +59,6 @@ export const updateUser = (userUpdate) => {
     return async (dispatch) => { 
         try {
             const {data} = await reqAxiosHook.post('/update', userUpdate);
-            console.log(data, 'data thunks');
             dispatch(update({
                 user: data,
             })) 
