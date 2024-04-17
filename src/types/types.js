@@ -18,3 +18,9 @@ export const mensajesToast={
         icono:"fail"
     }
 }
+
+export const methodsHTTP = {
+    POST: 'post',
+    GET: 'get',
+    PUT: 'put'
+}

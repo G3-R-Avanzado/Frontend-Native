@@ -4,16 +4,21 @@ import Card from '../../components/Card';
 import { useState } from 'react';
 import { buscarProductoPorUsuario } from "../../helpers/Helpers"
 import VisualizadorProductos from '../../components/VisualizadorProductos';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getAllPublicationUser } from '../../store/Slices/publication/publicationThunks';
+
+
 
 const Posts = ({navigation}) => {
     const [productos, setProductos] = useState("")
-    const { width: ANCHO_PANTALLA } = Dimensions.get("window")
     const [carga, setCarga] = useState(true)
     const boton = "Gestionar"
+
     const {user} = useSelector((store)=>store.auth)
+    const {publicationsUser} = useSelector((store)=>store.publication)
+    const dispatch = useDispatch()
     
-    useEffect(() => {
+    /* useEffect(() => {
         buscarProductoPorUsuario(user.id).then((resp) => {
             if (resp.status == 200) {
                 const publicaciones = resp.data
@@ -23,7 +28,17 @@ const Posts = ({navigation}) => {
                 setCarga(false)
             }
         })
-    }, [])
+        
+    }, []) */
+
+    useEffect(()=>{
+        dispatch(getAllPublicationUser(user.id))
+        setCarga(false)
+    },[user])
+
+    useEffect(()=>{
+        setProductos(publicationsUser)
+    },[publicationsUser])
     
     return (
         <View>
@@ -45,7 +60,7 @@ const Posts = ({navigation}) => {
                                         </View>
                                     )} />
                             </View> */}
-                            <VisualizadorProductos boton={boton} productos={productos}navigation={navigation}/>
+                            <VisualizadorProductos boton={boton} productos={productos} navigation={navigation}/>
                         </>) :
                         (<View>
                             <Text>No hay publicaciones para mostrar.</Text>

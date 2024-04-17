@@ -6,8 +6,9 @@ import Logo from '../../../assets/logo1.png'
 import { useNavigation } from '@react-navigation/native';
 import { styleAuth } from './styleAuth';
 import { useDispatch, useSelector } from 'react-redux'
-import { getLogin } from '../../store/Slices/auth/authThunks';
 import { validationAuthUser } from '../../config/schemas';  
+import { getLogin } from '../../store/Slices/auth/authThunks';
+import { getAllPublicationUser } from '../../store/Slices/publication/publicationThunks';
 
 export const Login = () => {
     const dispatch = useDispatch();

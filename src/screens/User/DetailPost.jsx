@@ -7,23 +7,47 @@ import { styleAuth } from '../Auth/styleAuth';
 import { validationPublication } from '../../config/schemas';
 import { modificarProducto } from '../../helpers/Helpers';
 import { useNavigation } from '@react-navigation/native';
-
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
+import { useDispatch } from 'react-redux';
+import { getCategories } from '../../store/Slices/publication/publicationThunks';
+
+import {Picker} from '@react-native-picker/picker';
 
 
 const DetailPost = ({ item, route }) => {
+    const { selectedItem } = route.params;
+
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
-    const navigation = useNavigation();
+    const [categories, setCategories] = useState([])
+    const [categorieSelected, setCategorieSelected] = useState(selectedItem.category.name)
 
-    const { selectedItem } = route.params;
+    const navigation = useNavigation();
+    
+
+    const dispatch = useDispatch();
+
+    
+    
+    useEffect(()=>{
+        loadCategories();
+    },[])
+
+    const loadCategories = async () => {
+        const categories = await dispatch(getCategories());
+        setCategories(categories)
+    }
+
+    useEffect(()=>{
+        console.log(categories);
+    },[categories])
 
     const initialValues = {
         titulo: selectedItem.titulo,
         description: selectedItem.description,
         image: selectedItem.image,
         price: selectedItem.price.toString(),
-        category: selectedItem.category
+        category: selectedItem.category.name
     }
 
     const handleSubmitFormik = async (values)=>{
@@ -113,6 +137,19 @@ const DetailPost = ({ item, route }) => {
                                             onBlur={handleBlur('category')}
                                         />
                                         {errors.category && touched.category && <Text style={{ color: 'red' }}>{errors.category}</Text>}
+                                    </View>
+                                    <View>
+                                        <Picker
+                                            selectedValue={categorieSelected}
+                                            onValueChange={(itemValue, itemIndex) =>
+                                                setCategorieSelected(itemValue)
+                                            }
+                                            style={{backgroundColor: 'white'}}
+                                        >
+                                            {categories.map((categorie)=>{
+                                                return <Picker.Item label={categorie.name} value={categorie._id} />
+                                            })}
+                                        </Picker>
                                     </View>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-end' }}>

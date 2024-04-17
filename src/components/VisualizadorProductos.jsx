@@ -12,7 +12,12 @@ const VisualizadorProductos = ({boton,productos,navigation}) => {
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => (
                 <View style={[style.contenedorCards, { width: ANCHO_PANTALLA / 2.5 }]}>
-                    <Card navigation={navigation}item={item} botonContenido={boton} ANCHO_PANTALLA={ANCHO_PANTALLA} />
+                    <Card 
+                        navigation={navigation}
+                        item={item} 
+                        botonContenido={boton} 
+                        ANCHO_PANTALLA={ANCHO_PANTALLA} 
+                    />
                 </View>
             )} />
     </View>
