@@ -51,7 +51,7 @@ const HomeScreen = ({navigation}) => {
                         size={24}
                         color="#00a650" />
                     <Text style={{ color: "#00a650" }}>  Envío gratis</Text>
-                    <Text> en millones de produstos desde $23.000</Text>
+                    <Text> en millones de productos desde $23.000</Text>
                 </Text>
             </View>
             <MostSeller navigation={navigation} />

@@ -13,12 +13,15 @@ const MostSeller = ({ navigation }) => {
     useEffect(() => {
         listarCategorias().then((resp) => {
             if (resp.status == 200) {
+                console.log(resp.data);
                 const categorias = resp.data.map((item) => ({ id: item._id, name: item.name }));
+                console.log(categorias);
                 setCategoria(categorias);
             }
         })
         cargarProductos().then((resp) => {
             if (resp.status == 200) {
+                
                 setProductos(resp.data)
             } else {
                 //mensaje de error al cargar
@@ -41,7 +44,7 @@ const MostSeller = ({ navigation }) => {
                             {
                                 <>
                                     {categoria.map((categoria, index) => {
-                                        const productosFiltrados = productos.filter((producto) => producto.category === categoria.id);
+                                        const productosFiltrados = productos.filter((producto) => producto.category._id === categoria.id);
                                         return (
                                             <SliderProductos
                                                 key={index}
@@ -54,7 +57,7 @@ const MostSeller = ({ navigation }) => {
                                     })}
                                 </>
                             }
-                            {/* <SliderProductos boton={boton} productos={productos} navigation={navigation}/> */}
+                            <SliderProductos boton={boton} productos={productos} navigation={navigation}/>
                         </>)
                 }
             </View>

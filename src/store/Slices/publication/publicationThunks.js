@@ -5,7 +5,6 @@ export const getAllPublication = () => {
     return async (dispatch) => {
         try {
             const {data} = await reqAxiosHook.get('/publication/getall')
-            
             dispatch(update({
                 publications: data,
             })) 
