@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react'
 import axios from 'axios';
-const urlApi = import.meta.env.VITE_URL_API;
+import { useEffect, useState } from 'react'
+import { methodsHTTP } from '../types/types';
 
 //Instancia personalizada de axios
 export const reqAxiosHook = axios.create({
-    baseURL: urlApi,
+    baseURL: process.env.EXPO_PUBLIC_API_URL,
     timeout: 12000,
     headers: {
-        "Content-Type": 'application/json',
-        // 'token' : 'kdjsfierwhjerw0893455784598',
+        "Content-Type": 'application/json;charset=UTF-8',
+        'Access-Control-Allow-Origin': '*'
     }
 });
 
-export const useAxios = (url, method, params) => {
+export const useAxios = (url, method, params, body) => {
     const [dataApi, setDataApi] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     
@@ -20,7 +20,8 @@ export const useAxios = (url, method, params) => {
         const resp = await reqAxiosHook({
             url: url,
             method: method,
-            params: { params }
+            params: { params },
+            data: body
         });
         const { data } = await resp.data;
         setDataApi(data);
@@ -37,5 +38,6 @@ export const useAxios = (url, method, params) => {
 
 useAxios.defaultProps = {
     params: null,
-    method: 'post'
+    body: null, 
+    method: methodsHTTP.POST
 }

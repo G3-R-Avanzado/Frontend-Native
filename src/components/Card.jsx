@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
-import DetailProduct from "../screens/Product/DetailProduct";
+
 
 const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
-    
+
     useEffect(() => {
         if (boton == "Gestionar") {
 
@@ -21,7 +21,7 @@ const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     };
     return (
         <View  style={[styles.container]}>
-                <Image style={styles.imagen} source={{ uri: item.image }} />
+                <Image style={styles.imagen} source={{ uri:`data:image/jpeg;base64,${item.image}`}} />
                 <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.description}</Text>
                 <Text style={styles.nombre}>{item.titulo}</Text>
                 <Text>{item.price}$</Text>

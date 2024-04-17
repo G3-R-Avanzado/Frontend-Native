@@ -1,25 +1,31 @@
 import { login, logout, messageError, update } from "./authSlice";
 import { Roles } from "../../../types/types";
-import { axiosAuth } from "../../../config/axiosApi";
-
+//import { axiosAuth } from "../../../config/axiosApi";
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
+import { reqAxiosHook } from "../../../hooks/useAxios";
+import axios from "axios";
+
+
 
 export const getLogin = (email, password) => {
     return async (dispatch) => {
         try {
-            const {data} = await axiosAuth.post('/login', {
+            const response = await reqAxiosHook.post('/login', {
                 email: email,
                 password: password,
             })
-            axiosAuth.defaults.headers.common['token'] = data.token;
+            
+            reqAxiosHook.defaults.headers.common['token'] = response.data.token;
+
             dispatch(login({
-                user: data,
+                user: response.data,
             })) 
             
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
-                title: 'Usuario logeado con exito',
+                title: 'Inicio de sesión exitoso!',
             })
+            
         } catch (error) {
             console.log(error.response.data);
             dispatch(messageError({message: error.response.data}))
@@ -42,7 +48,7 @@ export const checkToken = () => {
 export const register = (newUser) => {
     return async (dispatch) => { 
         try {
-            const {data} = await axiosAuth.post('/register', newUser);
+            const {data} = await reqAxiosHook.post('/register', newUser);
             dispatch(login({
                 user: data,
             })) 
@@ -56,8 +62,7 @@ export const register = (newUser) => {
 export const updateUser = (userUpdate) => {
     return async (dispatch) => { 
         try {
-            const {data} = await axiosAuth.post('/update', userUpdate);
-            console.log(data, 'data thunks');
+            const {data} = await reqAxiosHook.post('/update', userUpdate);
             dispatch(update({
                 user: data,
             })) 

@@ -42,6 +42,7 @@ export const authSlice = createSlice({
         },
         update: (state, action)=> {
             state.user = {
+                id: action.payload.user.id,
                 name: action.payload.user.name,
                 username: action.payload.user.username,
                 email: action.payload.user.email,

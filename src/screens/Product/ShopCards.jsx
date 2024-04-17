@@ -1,30 +1,16 @@
-import {FlatList, Image,Button, Text, View, StyleSheet } from "react-native";
-import { imagesSVG } from "../../styles/globalStyles";
-import { useEffect } from "react";
+import { Image,Button, Text, View, StyleSheet } from "react-native";
 import mercadocredito from "../../../assets/tarjetas/mercadoCredito.png"
 import amercanExpress from "../../../assets/tarjetas/americanExpress.png"
-import argencard from "../../../assets/tarjetas/argencard.png"
 import cabalDebito from "../../../assets/tarjetas/cabalDebito.png"
-import cencosud from "../../../assets/tarjetas/cencosud.png"
-import corrientes from "../../../assets/tarjetas/corrientes.png"
-import dinnersClub from "../../../assets/tarjetas/DinnersClub.png"
-import falabella from "../../../assets/tarjetas/falabella.png"
-import hsbc1 from "../../../assets/tarjetas/hsbc1.png"
-import hsbc2 from "../../../assets/tarjetas/hsbc2.png"
 import maestro from "../../../assets/tarjetas/maestro.png"
 import mastercard from "../../../assets/tarjetas/mastercardd.png"
 import mastercardDebito from "../../../assets/tarjetas/masterCardDebito.png"
-import mercadoPago from "../../../assets/tarjetas/Mercadopago.png"
-import mexico from "../../../assets/tarjetas/mexico.png"
 import pagoFacil from "../../../assets/tarjetas/pagoFacil.png"
 import rapipago from "../../../assets/tarjetas/rapipago.png"
-import shopping from "../../../assets/tarjetas/shopping.png"
 import visa from "../../../assets/tarjetas/visa.png"
 import visaDebito from "../../../assets/tarjetas/visaDebito.png"
 
-
 const ShopCards = () => {
-    useEffect(()=>{console.log("HOLA");},[])
     return (
         <View>
                 <View style={styles.container}>

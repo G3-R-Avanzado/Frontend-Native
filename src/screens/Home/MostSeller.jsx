@@ -1,15 +1,15 @@
-import { View, Text, FlatList, StyleSheet, DimensionValue, Dimensions, ActivityIndicator, ScrollView } from "react-native";
-import Card from "../../components/Card";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { cargarProductos, listarCategorias } from "../../helpers/Helpers"
 import SliderProductos from "../../components/SliderProductos";
 import Spinner from "../../components/Spinner";
+import { botones } from "../../types/types";
 
 const MostSeller = ({ navigation }) => {
     const [productos, setProductos] = useState([])
     const [categoria, setCategoria] = useState([])
     const [carga, setCarga] = useState(true)
-    const boton = "Ver detalle"
+    const boton = botones.detalleDePublicacion;
     useEffect(() => {
         listarCategorias().then((resp) => {
             if (resp.status == 200) {
@@ -41,7 +41,7 @@ const MostSeller = ({ navigation }) => {
                             {
                                 <>
                                     {categoria.map((categoria, index) => {
-                                        const productosFiltrados = productos.filter((producto) => producto.category === categoria.id);
+                                        const productosFiltrados = productos.filter((producto) => producto.category._id === categoria.id);
                                         return (
                                             <SliderProductos
                                                 key={index}
@@ -54,7 +54,7 @@ const MostSeller = ({ navigation }) => {
                                     })}
                                 </>
                             }
-                            {/* <SliderProductos boton={boton} productos={productos} navigation={navigation}/> */}
+                            <SliderProductos boton={boton} productos={productos} navigation={navigation}/>
                         </>)
                 }
             </View>
