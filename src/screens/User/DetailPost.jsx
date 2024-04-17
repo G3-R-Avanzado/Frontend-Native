@@ -8,10 +8,11 @@ import { validationPublication } from '../../config/schemas';
 import { modificarProducto } from '../../helpers/Helpers';
 import { useNavigation } from '@react-navigation/native';
 import { ALERT_TYPE, Toast } from 'react-native-alert-notification';
-import { useDispatch } from 'react-redux';
-import { getCategories } from '../../store/Slices/publication/publicationThunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, updatePublication } from '../../store/Slices/publication/publicationThunks';
 
 import {Picker} from '@react-native-picker/picker';
+import InputImage from '../../components/ui/InputImage';
 
 
 const DetailPost = ({ item, route }) => {
@@ -20,14 +21,11 @@ const DetailPost = ({ item, route }) => {
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
     const [categories, setCategories] = useState([])
-    const [categorieSelected, setCategorieSelected] = useState(selectedItem.category.name)
+    const [image, setImage] = useState({base64: `data:image/jpeg;base64,${selectedItem.image}`});
 
     const navigation = useNavigation();
-    
 
     const dispatch = useDispatch();
-
-    
     
     useEffect(()=>{
         loadCategories();
@@ -38,45 +36,38 @@ const DetailPost = ({ item, route }) => {
         setCategories(categories)
     }
 
-    useEffect(()=>{
-        console.log(categories);
-    },[categories])
-
     const initialValues = {
         titulo: selectedItem.titulo,
         description: selectedItem.description,
-        image: selectedItem.image,
         price: selectedItem.price.toString(),
-        category: selectedItem.category.name
+        category: selectedItem.category._id
     }
 
     const handleSubmitFormik = async (values)=>{
-        modificarProducto({...values, 
+        const Publication = {
+            ...values, 
             ["price"]: parseInt(values.price),
-            ["user"]: selectedItem.user,
-            ["status"]: selectedItem.status,
-            ["_id"]: selectedItem._id
-        }).then(()=>{
-            Toast.show({
-                type: ALERT_TYPE.SUCCESS,
-                title: 'Publicacion modificada con exito',
-            })
-            navigation.navigate('Mis publicaciones')
-        });
-        
+            ["user"]: selectedItem.user._id,
+            ["status"]: selectedItem.status._id,
+            ["_id"]: selectedItem._id,
+            ["image"]: image.base64
+        }
+
+        await dispatch(updatePublication(Publication))
+
+        navigation.navigate('Mis publicaciones')
     }
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                
                 <View style={[styleAuth.container, style.containerRegister]}>
                     <View style={style.form}>
                         <Formik
                             initialValues={initialValues}
                             onSubmit={handleSubmitFormik}
                             validationSchema={validationPublication}
-                        >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
+                        >{({ handleSubmit, handleChange, values, handleBlur, errors, touched , setFieldValue}) => (
                             <>
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
                                     <View>
@@ -91,6 +82,12 @@ const DetailPost = ({ item, route }) => {
                                         />
                                         {errors.titulo && touched.titulo && <Text style={{ color: 'red' }}>{errors.titulo}</Text>}
                                     </View>
+                                    <View style={style.inputImage}>
+                                        <InputImage 
+                                            image={image}
+                                            setImage={setImage}
+                                        />
+                                    </View>
                                     <View>
                                         <Text>Descripcion</Text>
                                         <TextInput
@@ -103,7 +100,7 @@ const DetailPost = ({ item, route }) => {
                                         />
                                         {errors.description && touched.description && <Text style={{ color: 'red' }}>{errors.description}</Text>}
                                     </View>
-                                    <View>
+                                    {/* <View>
                                         <Text>Imagen</Text>
                                         <TextInput
                                             style={styleAuth.input}
@@ -114,7 +111,7 @@ const DetailPost = ({ item, route }) => {
                                             onBlur={handleBlur('image')}
                                         />
                                         {errors.image && touched.image && <Text style={{ color: 'red' }}>{errors.image}</Text>}
-                                    </View>
+                                    </View> */}
                                     <View>
                                         <Text>Precio</Text>
                                         <TextInput
@@ -127,7 +124,7 @@ const DetailPost = ({ item, route }) => {
 
                                         {errors.price && touched.price && <Text style={{ color: 'red' }}>{errors.price}</Text>}
                                     </View>
-                                    <View>
+                                    {/* <View>
                                         <Text>Categoria</Text>
                                         <TextInput
                                             style={styleAuth.input}
@@ -137,17 +134,18 @@ const DetailPost = ({ item, route }) => {
                                             onBlur={handleBlur('category')}
                                         />
                                         {errors.category && touched.category && <Text style={{ color: 'red' }}>{errors.category}</Text>}
-                                    </View>
+                                    </View> */}
                                     <View>
+                                        <Text>Categoria</Text>
                                         <Picker
-                                            selectedValue={categorieSelected}
+                                            selectedValue={values.category}
                                             onValueChange={(itemValue, itemIndex) =>
-                                                setCategorieSelected(itemValue)
+                                                setFieldValue('category', itemValue)
                                             }
                                             style={{backgroundColor: 'white'}}
                                         >
-                                            {categories.map((categorie)=>{
-                                                return <Picker.Item label={categorie.name} value={categorie._id} />
+                                            {categories.map((category, index)=>{
+                                                return <Picker.Item key={index} label={category.name} value={category._id} />
                                             })}
                                         </Picker>
                                     </View>
@@ -182,6 +180,10 @@ const style = StyleSheet.create({
     form: {
         flex: 2,
         width: '100%'
+    },
+    inputImage: {
+        width: 100,
+        height: 100, 
     }
 });
 export default DetailPost;
