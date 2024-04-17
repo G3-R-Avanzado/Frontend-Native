@@ -3,18 +3,22 @@ import { Roles } from "../../../types/types";
 //import { axiosAuth } from "../../../config/axiosApi";
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 import { reqAxiosHook } from "../../../hooks/useAxios";
+import axios from "axios";
+
+
 
 export const getLogin = (email, password) => {
     return async (dispatch) => {
         try {
-            const {data} = await reqAxiosHook.post('/login', {
+            const response = await reqAxiosHook.post('/login', {
                 email: email,
                 password: password,
             })
-            reqAxiosHook.defaults.headers.common['token'] = data.token;
+            
+            reqAxiosHook.defaults.headers.common['token'] = response.data.token;
 
             dispatch(login({
-                user: data,
+                user: response.data,
             })) 
             
             Dialog.show({

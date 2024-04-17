@@ -20,7 +20,6 @@ export const validationUpdateUser = yup.object().shape({
 export const validationPublication = yup.object().shape({
     titulo: yup.string().required("Campo requerido"),
     description: yup.string().required("Campo requerido"),
-    image: yup.string().required("Campo requerido"),
     price: yup.string("debe ser un numero").required("Campo requerido"),
     category: yup.string().required("Campo requerido")
 });
