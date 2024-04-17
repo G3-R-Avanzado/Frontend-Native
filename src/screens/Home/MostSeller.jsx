@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { cargarProductos, listarCategorias } from "../../helpers/Helpers"
 import SliderProductos from "../../components/SliderProductos";
 import Spinner from "../../components/Spinner";
+import { botones } from "../../types/types";
 
 const MostSeller = ({ navigation }) => {
     const [productos, setProductos] = useState([])
     const [categoria, setCategoria] = useState([])
     const [carga, setCarga] = useState(true)
-    const boton = "Ver detalle"
+    const boton = botones.detalleDePublicacion;
     useEffect(() => {
         listarCategorias().then((resp) => {
             if (resp.status == 200) {

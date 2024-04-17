@@ -6,13 +6,14 @@ import { buscarProductoPorUsuario } from "../../helpers/Helpers"
 import VisualizadorProductos from '../../components/VisualizadorProductos';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllPublicationUser } from '../../store/Slices/publication/publicationThunks';
+import { botones } from '../../types/types';
 
 
 
 const Posts = ({navigation}) => {
     const [productos, setProductos] = useState("")
     const [carga, setCarga] = useState(true)
-    const boton = "Gestionar"
+    const boton = botones.gestionDeProducto;
 
     const {user} = useSelector((store)=>store.auth)
     const {publicationsUser} = useSelector((store)=>store.publication)

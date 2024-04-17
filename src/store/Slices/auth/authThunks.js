@@ -19,7 +19,7 @@ export const getLogin = (email, password) => {
             
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
-                title: 'Usuario logeado con exito',
+                title: 'Inicio de sesión exitoso!',
             })
             
         } catch (error) {

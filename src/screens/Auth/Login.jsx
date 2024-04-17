@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Linking } from 'react-native';
 import { Formik } from 'formik';
 import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
@@ -67,11 +67,14 @@ export const Login = () => {
                     </>
                 )}
                 </Formik>
-                <TouchableOpacity onPress={() => { console.log("Olvidate tu contraseña"); }}>
+                <TouchableOpacity onPress={() => { console.log("Olvidaste tu contraseña"); }}>
                     <Text style={{ textAlign: 'center' }}>Olvidate tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
             <View style={style.register}>
+            <TouchableOpacity onPress={() => { Linking.openURL("https://tuculibre.netlify.app/") }}>
+                    <Text style={{ color:"blue" }}>Eres Administrador? Ingresá por aqui!</Text>
+                </TouchableOpacity>
                 <CustomButton
                     text={'Registrarme'}
                     onClick={()=>navigation.navigate('Register')}

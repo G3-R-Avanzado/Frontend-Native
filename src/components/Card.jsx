@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
-import DetailProduct from "../screens/Product/DetailProduct";
+
 
 const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
-    useEffect(()=>{console.log("hola");},[])
+
     useEffect(() => {
         if (boton == "Gestionar") {
 

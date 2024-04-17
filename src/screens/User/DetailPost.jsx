@@ -38,10 +38,6 @@ const DetailPost = ({ item, route }) => {
         setCategories(categories)
     }
 
-    useEffect(()=>{
-        console.log(categories);
-    },[categories])
-
     const initialValues = {
         titulo: selectedItem.titulo,
         description: selectedItem.description,
