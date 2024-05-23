@@ -14,6 +14,7 @@ export const useAlert = () => {
         setMessageBody(mensaje)
     }
     const showAlert = ({ messageTitle, messageBody }) => {
+        console.log(messageTitle, messageBody)
         Dialog.show({
             type:type,
             title: messageTitle,
@@ -35,7 +36,6 @@ export const useAlert = () => {
 
     return {
         showAlert,
-        
         isVisible,
         showError
     };
