@@ -18,6 +18,7 @@ const DetailProduct = ({ route }) => {
     const { showAlert } = useAlert();
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            <View style={{marginHorizontal:3}}>
             <Text style={styles.titulo}>{selectedItem.titulo}</Text>
             <Image style={{ width: "100%", height: 200 }} source={{ uri: selectedItem.image }} />
             <Text style={styles.precio}>${selectedItem.price}</Text>
@@ -78,6 +79,7 @@ const DetailProduct = ({ route }) => {
                 </View>
                 <Button title="Conocé otros medios de pago" />
             </View>
+        </View>
         </ScrollView>
     );
 };

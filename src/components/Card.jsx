@@ -2,34 +2,34 @@ import { useEffect, useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from "react-native";
 
 
-const Card = ({ item, ANCHO_PANTALLA,navigation, botonContenido }) => {
+const Card = ({ item, ANCHO_PANTALLA, navigation, botonContenido }) => {
     const [boton, setBoton] = useState(botonContenido)
 
     useEffect(() => {
         if (boton == "Gestionar") {
 
         } else {
-            
+
         }
     }, [])
     const onPress = () => {
-        if(boton=="Ver detalle"){
+        if (boton == "Ver detalle") {
             navigation.navigate('DetailProduct', { selectedItem: item });
-        }else{
+        } else {
             navigation.navigate('DetailPost', { selectedItem: item });
         }
     };
     return (
-        <View  style={[styles.container]}>
-                <Image style={styles.imagen} source={{ uri:`data:image/jpeg;base64,${item.image}`}} />
-                <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.description}</Text>
-                <Text style={styles.nombre}>{item.titulo}</Text>
-                <Text>{item.price}$</Text>
-                <TouchableHighlight  style={styles.button} onPress={onPress}>
+        <View style={[styles.container]}>
+            <Image style={styles.imagen} source={{ uri: `data:image/jpeg;base64,${item.image}` }} />
+            <Text numberOfLines={2} style={styles.DescripcionTexto}>{item.description}</Text>
+            <Text style={styles.nombre}>{item.titulo}</Text>
+            <Text>{item.price}$</Text>
+            <TouchableHighlight style={styles.button} onPress={onPress}>
                 <View>
                     <Text style={styles.ContenidoBoton}>{boton}</Text>
                 </View>
-                </TouchableHighlight>
+            </TouchableHighlight>
         </View>
     );
 };
@@ -55,11 +55,12 @@ const styles = StyleSheet.create({
     },
     ContenidoBoton: {
         color: "white",
-        width:"70px",
-        height:"10px",
-        
+        width: "70px",
+        height: "10px",
+
     },
     button: {
+        marginVertical: 3,
         alignItems: 'center',
         backgroundColor: '#4285F4',
         padding: 10,
@@ -68,7 +69,6 @@ const styles = StyleSheet.create({
     DescripcionTexto: {
         fontSize: 12,
         color: "gray",
-
     }
 })
 export default Card;
