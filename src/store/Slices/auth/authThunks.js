@@ -27,8 +27,7 @@ export const getLogin = (email, password) => {
             })
             
         } catch (error) {
-            console.log(error.response.data);
-            dispatch(messageError({message: error.response.data}))
+            dispatch(messageError({message: error.response.data[0]}))
         }
     }
 }
@@ -49,12 +48,12 @@ export const register = (newUser) => {
     return async (dispatch) => { 
         try {
             const {data} = await reqAxiosHook.post('/register', newUser);
+            console.log(data);
             dispatch(login({
                 user: data,
             })) 
         } catch (error) {
-            console.log(error.response);
-            dispatch(messageError({message: error.response.data}))
+            dispatch(messageError({message: error.response.data[0]}))
         }
     }
 }
@@ -67,8 +66,7 @@ export const updateUser = (userUpdate) => {
                 user: data,
             })) 
         } catch (error) {
-            console.log(error);
-            dispatch(messageError({message: error.response.data}))
+            dispatch(messageError({message: error.response.data[0]}))
         }
     }
 }
