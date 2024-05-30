@@ -48,7 +48,6 @@ export const register = (newUser) => {
     return async (dispatch) => { 
         try {
             const {data} = await reqAxiosHook.post('/register', newUser);
-            console.log(data);
             dispatch(login({
                 user: data,
             })) 

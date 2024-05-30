@@ -27,7 +27,6 @@ const Register = ({showLogo, textConfirm }) => {
     }
     useEffect(()=>{
         if(user.id == null){
-            console.log(user);
             dispatch(logOut());
         }
     },[])
@@ -124,7 +123,7 @@ const Register = ({showLogo, textConfirm }) => {
                                     
 
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                                <View style={{ flex: 1, justifyContent: 'flex-center' }}>
                                     {showSpinner ? 
                                     <>
                                         <Text style={{ color: 'red' }}>{message != null && message.type == 'error' ? message.text : ''}</Text>
@@ -134,7 +133,6 @@ const Register = ({showLogo, textConfirm }) => {
                                                 color='white'
                                             />
                                     </>: <Spinner/>}
-                                    {/*  */}
                                 </View>
                             </>
                         )}
@@ -166,7 +164,7 @@ const style = StyleSheet.create({
         justifyContent: 'center'
     },
     form: {
-        flex: 2,
+        flex: 4,
         width: '100%'
     },
     inputImage: {
