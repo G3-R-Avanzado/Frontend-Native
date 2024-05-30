@@ -12,7 +12,7 @@ const SliderProductos = ({productosFiltrados,categoria,navigation,boton}) => {
         }
     },[])
     return (
-        <View>
+        <View style={{marginStart:5}}>
         {carga?
             (<Spinner/>):
             <>

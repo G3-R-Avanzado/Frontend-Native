@@ -7,13 +7,9 @@ import Buscador from '../components/Buscador';
 import { EvilIcons } from '@expo/vector-icons';
 import Error from '../components/Error';
 import { FontAwesome6,SimpleLineIcons, FontAwesome, AntDesign, Ionicons, MaterialIcons, FontAwesome5, MaterialCommunityIcons, Foundation } from '@expo/vector-icons';<FontAwesome6 name="house-chimney" size={24} color="black" />
-import { Login } from '../screens/Auth/Login';
-import { Register } from '../screens/Auth/Register';
 import Posts from '../screens/User/Posts';
-import DetailPost from '../screens/User/DetailPost';
 import { useDispatch, useSelector } from 'react-redux'
 import StackNavigation from './StackNavigation';
-import DetailProduct from '../screens/Product/DetailProduct';
 import DetailUser from '../screens/User/DetailUser';
 
 
@@ -101,11 +97,6 @@ const DrawerNavigation = () => {
                     <EvilIcons name="clock" size={24} color="black" />
                 ),
             }} component={Error} />
-            {/* <Drawer.Screen name="Mi cuenta" options={{
-                drawerIcon: ({ focused, color, size }) => (
-                    <MaterialCommunityIcons name="account-circle-outline" size={24} color="black" />
-                ),
-            }} component={Error} /> */}
             <Drawer.Screen name="Ayuda" options={{
                 drawerIcon: ({ focused, color, size }) => (
                     <MaterialIcons name="support-agent" size={24} color="black" />
