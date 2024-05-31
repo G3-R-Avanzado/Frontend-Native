@@ -32,13 +32,10 @@ const Register = ({showLogo, textConfirm }) => {
     },[])
 
     const handleSubmitFormik = (values) => {
-        
         setShowSpinner(false)
-        console.log(values)
         
         if(user.email!=null){
             dispatch(updateUser({...values, picture: image != null ? image.base64 : ''})).then(()=>{
-                console.log("PUTO")
                 setShowSpinner(true)
             })
         }else {

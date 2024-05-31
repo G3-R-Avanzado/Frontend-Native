@@ -52,7 +52,7 @@ const DetailPost = ({ item, route }) => {
             ["_id"]: selectedItem._id,
             ["image"]: image.base64
         }
-
+        console.log(values)
         await dispatch(updatePublication(Publication))
 
         navigation.navigate('Mis publicaciones')

@@ -25,10 +25,14 @@ const DetailProduct = ({ route }) => {
             <Text style={{ color: "#6CA6FB", marginLeft: 10 }}>Ver los medios de pago</Text>
             <Text style={{ marginLeft: 10 }}>Stock disponible</Text>
             <View style={{ marginVertical: 5, marginHorizontal: 5 }}>
-                <Button title='Agregar al carrito' />
+                <Button title='Agregar al carrito' 
+                onPress={() => showAlert({ messageTitle: "Agregado al carrito Exitosamente!", messageBody: "Se guardó el producto en el carrito." })}
+                />
             </View>
             <View style={{ marginVertical: 5, marginHorizontal: 5 }}>
-                <Button title='Preguntar' />
+                <Button title='Preguntar' 
+                onPress={() => showAlert({ messageTitle: "¡Ups!", messageBody: "Estamos trabajando aun en mejorar. Disculpe las molestias" })}
+                />
             </View>
             <Text style={{ marginLeft: 10 }}>Vendido por el usuario {selectedItem.user.name}</Text>
             <Text>
