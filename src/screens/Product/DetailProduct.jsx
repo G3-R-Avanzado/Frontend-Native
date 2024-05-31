@@ -20,7 +20,7 @@ const DetailProduct = ({ route }) => {
         <ScrollView contentContainerStyle={styles.container}>
             <View style={{marginHorizontal:3}}>
             <Text style={styles.titulo}>{selectedItem.titulo}</Text>
-            <Image style={{ width: "100%", height: 200 }} source={{ uri: selectedItem.image }} />
+            <Image style={{width: "100%", height: 200}} source={{ uri: `data:image/jpeg;base64,${selectedItem.image}` }} />
             <Text style={styles.precio}>${selectedItem.price}</Text>
             <Text style={{ color: "#6CA6FB", marginLeft: 10 }}>Ver los medios de pago</Text>
             <Text style={{ marginLeft: 10 }}>Stock disponible</Text>
