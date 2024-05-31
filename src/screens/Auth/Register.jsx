@@ -9,15 +9,14 @@ import { register, updateUser , logOut} from '../../store/Slices/auth/authThunks
 import { validationRegisterUser, validationUpdateUser } from '../../config/schemas';
 import InputImage from '../../components/ui/InputImage';
 import Spinner from '../../components/Spinner';
+import useAlert from '../../hooks/useAlert';
 
 const Register = ({showLogo, textConfirm }) => {
     const {user, message} = useSelector((store)=>store.auth)
-
     const [image, setImage] = useState(user.picture != null ? {base64: user.picture}: null);
-
     const dispatch = useDispatch();
-
     const [showSpinner, setShowSpinner] = useState(true)
+    const {showAlert}=useAlert();
 
     const initialValues = {
         name: user.name ? user.name : '',
@@ -25,6 +24,7 @@ const Register = ({showLogo, textConfirm }) => {
         email: user.email ? user.email : '',
         password: user.password ? user.password : ''
     }
+
     useEffect(()=>{
         if(user.id == null){
             dispatch(logOut());
@@ -32,9 +32,13 @@ const Register = ({showLogo, textConfirm }) => {
     },[])
 
     const handleSubmitFormik = (values) => {
+        
         setShowSpinner(false)
+        console.log(values)
+        
         if(user.email!=null){
             dispatch(updateUser({...values, picture: image != null ? image.base64 : ''})).then(()=>{
+                console.log("PUTO")
                 setShowSpinner(true)
             })
         }else {
@@ -42,6 +46,8 @@ const Register = ({showLogo, textConfirm }) => {
                 setShowSpinner(true)
             })
         }
+        if(values.username!==null && values.password!==null&& values.name!==null )
+        showAlert({messageTitle:"Registro exitoso!",messageBody:"¡Bienvenido a Tucu Libre!"})
     }
 
     return (
@@ -67,7 +73,6 @@ const Register = ({showLogo, textConfirm }) => {
                         >{({ handleSubmit, handleChange, values, handleBlur, errors, touched }) => (
                             <>
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
-
                                     <View>
                                         <View style={{flex:1, flexDirection: 'row'}}>
                                             <View style={style.inputImage}>
@@ -88,7 +93,6 @@ const Register = ({showLogo, textConfirm }) => {
                                             </View>
                                         </View>
                                     </View>
-
                                     <View>
                                         <TextInput
                                             style={styleAuth.input}
@@ -120,8 +124,6 @@ const Register = ({showLogo, textConfirm }) => {
                                         />
                                         {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
                                     </View>}
-                                    
-
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-center' }}>
                                     {showSpinner ? 
@@ -138,13 +140,9 @@ const Register = ({showLogo, textConfirm }) => {
                         )}
                         </Formik>
                     </View>
-
-
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
-
-
     );
 };
 
