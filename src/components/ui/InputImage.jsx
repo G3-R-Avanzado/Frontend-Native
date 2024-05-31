@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     image: {
         width: '100%',
         height: '100%',
+        textAlign:"center",
+        alignItems:"center",
+        objectFit:"contain",
         zIndex: 0,
         opacity: 0.5
     },

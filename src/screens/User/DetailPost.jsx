@@ -21,7 +21,7 @@ const DetailPost = ({ item, route }) => {
     const [producto, setProducto] = useState("")
     const [carga, setCarga] = useState(false)
     const [categories, setCategories] = useState([])
-    const [image, setImage] = useState({base64: `data:image/jpeg;base64,${selectedItem.image}`});
+    const [image, setImage] = useState({base64: selectedItem.image});
 
     const navigation = useNavigation();
 
@@ -52,7 +52,7 @@ const DetailPost = ({ item, route }) => {
             ["_id"]: selectedItem._id,
             ["image"]: image.base64
         }
-
+        console.log(values)
         await dispatch(updatePublication(Publication))
 
         navigation.navigate('Mis publicaciones')
@@ -82,11 +82,13 @@ const DetailPost = ({ item, route }) => {
                                         />
                                         {errors.titulo && touched.titulo && <Text style={{ color: 'red' }}>{errors.titulo}</Text>}
                                     </View>
-                                    <View style={style.inputImage}>
-                                        <InputImage 
-                                            image={image}
-                                            setImage={setImage}
-                                        />
+                                    <View style={style.inputImageContainer}>
+                                        <View style={style.inputImage}>
+                                            <InputImage 
+                                                image={image}
+                                                setImage={setImage}
+                                            />
+                                        </View>
                                     </View>
                                     <View>
                                         <Text>Descripcion</Text>
@@ -100,18 +102,6 @@ const DetailPost = ({ item, route }) => {
                                         />
                                         {errors.description && touched.description && <Text style={{ color: 'red' }}>{errors.description}</Text>}
                                     </View>
-                                    {/* <View>
-                                        <Text>Imagen</Text>
-                                        <TextInput
-                                            style={styleAuth.input}
-                                            name="image"
-                                            placeholder={'Ingrese URL de la imagen de su producto'}
-                                            value={values.image}
-                                            onChangeText={handleChange('image')}
-                                            onBlur={handleBlur('image')}
-                                        />
-                                        {errors.image && touched.image && <Text style={{ color: 'red' }}>{errors.image}</Text>}
-                                    </View> */}
                                     <View>
                                         <Text>Precio</Text>
                                         <TextInput
@@ -124,17 +114,6 @@ const DetailPost = ({ item, route }) => {
 
                                         {errors.price && touched.price && <Text style={{ color: 'red' }}>{errors.price}</Text>}
                                     </View>
-                                    {/* <View>
-                                        <Text>Categoria</Text>
-                                        <TextInput
-                                            style={styleAuth.input}
-                                            placeholder={'category'}
-                                            value={values.category}
-                                            onChangeText={handleChange('category')}
-                                            onBlur={handleBlur('category')}
-                                        />
-                                        {errors.category && touched.category && <Text style={{ color: 'red' }}>{errors.category}</Text>}
-                                    </View> */}
                                     <View>
                                         <Text>Categoria</Text>
                                         <Picker
@@ -150,9 +129,9 @@ const DetailPost = ({ item, route }) => {
                                         </Picker>
                                     </View>
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                                <View style={{ flex: 1, justifyContent: 'flex-center' }}>
                                     <CustomButton
-                                        text={'Registrar'}
+                                        text={'Registrar cambios'}
                                         onClick={handleSubmit}
                                         color='white'
                                     />
@@ -182,8 +161,12 @@ const style = StyleSheet.create({
         width: '100%'
     },
     inputImage: {
-        width: 100,
-        height: 100, 
+        width: '50%',
+        height: 200, 
+    },
+    inputImageContainer:{
+        display: 'flex',
+        alignItems: 'center'
     }
 });
 export default DetailPost;

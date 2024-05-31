@@ -11,33 +11,50 @@ import DetailPost from '../screens/User/DetailPost';
 
 const Stack = createStackNavigator();
 
-const StackNavigation = (props) => {    
+const StackNavigation = (props) => {
     const dispatch = useDispatch();
-    const {isLogged} = useSelector((store)=>store.auth)
+    const { isLogged } = useSelector((store) => store.auth)
     const navigation = useNavigation();
 
-    useEffect(()=>{
+    useEffect(() => {
         isLogged && dispatch(logOut())
-    },[])
-    
-    useEffect(()=>{
-        isLogged && navigation.navigate('Home') 
-    },[isLogged])
-    
+    }, [])
+
+    useEffect(() => {
+        isLogged && navigation.navigate('Home')
+    }, [isLogged])
+
     return (
         <Stack.Navigator
             screenOptions={{
-                cardStyle:{
+                cardStyle: {
                     backgroundColor: '#FFE600'
                 },
-                headerStyle:{
+                headerStyle: {
                     backgroundColor: '#FFE600'
-                }}}>
-            <Stack.Screen name='Login' options={{ headerShown: false }} component={Login}/>
-            <Stack.Screen name='Register' component={Register}/>
-            <Stack.Screen name="DetailProduct" component={DetailProduct} />
-            <Stack.Screen name="DetailPost" component={DetailPost} />
-            <Stack.Screen name='Home' options={{ headerShown: false }} component={DrawerNavigation}/>
+                }
+            }}>
+            <Stack.Screen name='Login' options={{ headerShown: false,title:"Inicio de sesión" }} component={Login} />
+            <Stack.Screen name='Register'
+                options={{
+                    title: 'Registrarme',
+                    headerTitleStyle:{
+                        fontWeight:'bold'
+                    }
+                }}
+                component={Register} />
+            <Stack.Screen name="DetailProduct"
+                options={{
+                    title: '',
+                }}
+                component={DetailProduct} />
+            <Stack.Screen name="DetailPost"
+            options={{
+                title:""
+            }}
+            component={DetailPost} />
+            <Stack.Screen name='Home'
+            options={{ headerShown: false }} component={DrawerNavigation} />
         </Stack.Navigator>
     );
 };

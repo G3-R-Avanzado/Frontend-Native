@@ -4,6 +4,7 @@ import { Roles } from "../../../types/types";
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 import { reqAxiosHook } from "../../../hooks/useAxios";
 import axios from "axios";
+import useAlert from "../../../hooks/useAlert";
 
 
 
@@ -44,14 +45,13 @@ export const checkToken = () => {
         } 
     }
 }
-
 export const register = (newUser) => {
     return async (dispatch) => { 
         try {
             const {data} = await reqAxiosHook.post('/register', newUser);
             dispatch(login({
                 user: data,
-            })) 
+            }))
         } catch (error) {
             console.log(error.response);
             dispatch(messageError({message: error.response.data}))

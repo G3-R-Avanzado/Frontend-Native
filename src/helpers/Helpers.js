@@ -140,8 +140,6 @@ export const listarCategorias = async() => {
 //#endregion
 
 //#region Management Image
-
-
 export const convertBase64ToImage = async (Base64) => {
     try {
         return `data:image/jpeg;base64,${Base64}`
