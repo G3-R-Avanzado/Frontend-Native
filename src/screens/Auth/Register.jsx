@@ -5,7 +5,7 @@ import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { styleAuth } from './styleAuth';
 import { useDispatch, useSelector } from 'react-redux'
-import { register, updateUser , logOut} from '../../store/Slices/auth/authThunks';
+import { register, updateUser } from '../../store/Slices/auth/authThunks';
 import { validationRegisterUser, validationUpdateUser } from '../../config/schemas';
 import InputImage from '../../components/ui/InputImage';
 import Spinner from '../../components/Spinner';
@@ -18,6 +18,7 @@ const Register = ({showLogo, textConfirm }) => {
     const dispatch = useDispatch();
     const [showSpinner, setShowSpinner] = useState(true)
     const {showAlert}=useAlert();
+
 
     const initialValues = {
         name: user.name ? user.name : '',
@@ -34,22 +35,17 @@ const Register = ({showLogo, textConfirm }) => {
 
     const handleSubmitFormik = (values) => {
         setShowSpinner(false)
-        
         if(user.email!=null){
-            dispatch(updateUser({...values, picture: image != null ? image.base64 : ''})).then(()=>{
-                setShowSpinner(true)
-            })
+            dispatch(updateUser({...values, picture: image != null ? image.base64 : ''}))
         }else {
-            dispatch(register({...values, picture: image != null ? image.base64 : ''})).then(()=>{
-                setShowSpinner(true)
-            })
+            dispatch(register({...values, picture: image != null ? image.base64 : ''}))
         }
         if(values.username!==null && values.password!==null&& values.name!==null )
         showAlert({messageTitle:"Registro exitoso!",messageBody:"¡Bienvenido a Tucu Libre!"})
     }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding"> 
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={[styleAuth.container, style.containerRegister]}>
                     {showLogo &&
@@ -124,16 +120,12 @@ const Register = ({showLogo, textConfirm }) => {
                                         {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
                                     </View>}
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'flex-center' }}>
-                                    {showSpinner ? 
-                                    <>
-                                        <Text style={{ color: 'red' }}>{message != null && message.type == 'error' ? message.text : ''}</Text>
-                                            <CustomButton
-                                                text={textConfirm}
-                                                onClick={handleSubmit}
-                                                color='white'
-                                            />
-                                    </>: <Spinner/>}
+                                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                                    <CustomButton
+                                        text={textConfirm}
+                                        onClick={handleSubmit}
+                                        color='white'
+                                    />
                                 </View>
                             </>
                         )}
@@ -161,7 +153,7 @@ const style = StyleSheet.create({
         justifyContent: 'center'
     },
     form: {
-        flex: 4,
+        flex: 2,
         width: '100%'
     },
     inputImage: {

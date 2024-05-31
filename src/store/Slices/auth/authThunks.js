@@ -28,7 +28,8 @@ export const getLogin = (email, password) => {
             })
             
         } catch (error) {
-            dispatch(messageError({message: error.response.data[0]}))
+            console.log(error.response.data);
+            dispatch(messageError({message: error.response.data}))
         }
     }
 }
@@ -52,7 +53,8 @@ export const register = (newUser) => {
                 user: data,
             }))
         } catch (error) {
-            dispatch(messageError({message: error.response.data[0]}))
+            console.log(error.response);
+            dispatch(messageError({message: error.response.data}))
         }
     }
 }
@@ -65,7 +67,8 @@ export const updateUser = (userUpdate) => {
                 user: data,
             })) 
         } catch (error) {
-            dispatch(messageError({message: error.response.data[0]}))
+            console.log(error);
+            dispatch(messageError({message: error.response.data}))
         }
     }
 }

@@ -73,7 +73,7 @@ export const Login = () => {
                 </TouchableOpacity>
             </View>
             <View style={style.register}>
-                <TouchableOpacity onPress={() => { Linking.openURL("https://tuculibre.netlify.app/") }}>
+            <TouchableOpacity onPress={() => { Linking.openURL("https://tuculibre.netlify.app/") }}>
                     <Text style={{ color:"blue" }}>Eres Administrador? Ingresá por aqui!</Text>
                 </TouchableOpacity>
                 <CustomButton
@@ -95,7 +95,7 @@ const style = StyleSheet.create({
     },
     register: {
         flex: 1,
-        justifyContent: 'flex-center'
+        justifyContent: 'flex-end'
     }, 
     form: {
         flex: 2,
