@@ -9,11 +9,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { validationAuthUser } from '../../config/schemas';  
 import { getLogin } from '../../store/Slices/auth/authThunks';
 import { getAllPublicationUser } from '../../store/Slices/publication/publicationThunks';
+import useAlert from '../../hooks/useAlert';
 
 export const Login = () => {
     const dispatch = useDispatch();
     const navigation = useNavigation();
-
+    const{showAlert}=useAlert()
     const initialValues = {
         email: 'agustinSanchez@gmail.com',
         password: '123456789'
@@ -67,8 +68,8 @@ export const Login = () => {
                     </>
                 )}
                 </Formik>
-                <TouchableOpacity onPress={() => { console.log("Olvidaste tu contraseña"); }}>
-                    <Text style={{ textAlign: 'center' }}>Olvidate tu contraseña?</Text>
+                <TouchableOpacity onPress={() => showAlert({ messageTitle: "¡Ups!", messageBody: "Estamos trabajando aun en mejorar. Disculpe las molestias" })}>
+                    <Text style={{ textAlign: 'center' }}>Olvidaste tu contraseña?</Text>
                 </TouchableOpacity>
             </View>
             <View style={style.register}>

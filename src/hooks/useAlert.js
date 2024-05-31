@@ -9,24 +9,25 @@ export const useAlert = () => {
     const [type, setType] = useState(ALERT_TYPE.SUCCESS);
     const [typeError, setTypeError] = useState(ALERT_TYPE.WARNING);
 
-    const cambiarMensaje =(titulo,mensaje)=>{
+    const cambiarMensaje = (titulo, mensaje) => {
         setMessageTitle(titulo)
         setMessageBody(mensaje)
     }
     const showAlert = ({ messageTitle, messageBody }) => {
-        console.log(messageTitle, messageBody)
+        
         Dialog.show({
-            type:type,
+            type: type,
             title: messageTitle,
             textBody: messageBody,
-            button: 'ok',
+            button: 'OK',
+            colors: ["red", "yellow"] /** ['light_colors' , 'dark_colors'] */
         })
-    };
 
+    };
     const showError = ({ messageTitle, messageBody }) => {
         Dialog.show({
-            autoClose:2000,
-            type:typeError,
+            autoClose: 2000,
+            type: typeError,
             title: messageTitle,
             textBody: messageBody,
             button: 'ok',
