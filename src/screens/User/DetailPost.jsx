@@ -131,7 +131,7 @@ const DetailPost = ({ item, route }) => {
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'flex-center' }}>
                                     <CustomButton
-                                        text={'Registrar'}
+                                        text={'Registrar cambios'}
                                         onClick={handleSubmit}
                                         color='white'
                                     />

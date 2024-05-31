@@ -10,6 +10,7 @@ import { validationRegisterUser, validationUpdateUser } from '../../config/schem
 import InputImage from '../../components/ui/InputImage';
 import Spinner from '../../components/Spinner';
 import useAlert from '../../hooks/useAlert';
+import { object } from 'yup';
 
 const Register = ({showLogo, textConfirm }) => {
     const {user, message} = useSelector((store)=>store.auth)
@@ -57,7 +58,7 @@ const Register = ({showLogo, textConfirm }) => {
                                 source={Logo}
                                 style={{
                                     width: 200,
-                                    height: 150
+                                    height: 150,
                                 }}
                             />
                             <Text style={styleAuth.title}>TucuLibre</Text>
@@ -72,10 +73,11 @@ const Register = ({showLogo, textConfirm }) => {
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
                                     <View>
                                         <View style={{flex:1, flexDirection: 'row'}}>
-                                            <View style={style.inputImage}>
+                                            <View style={style.inputImage} >
                                                 <InputImage 
                                                     image={image}
                                                     setImage={setImage}
+                                                    
                                                 />
                                             </View>
                                             <View style={{flex: 5, justifyContent: 'center', paddingLeft: 5}}>
@@ -163,9 +165,8 @@ const style = StyleSheet.create({
         width: '100%'
     },
     inputImage: {
-        width: 100,
         height: 100, 
-        flex: 2
+        flex: 2,
     }
 });
 
