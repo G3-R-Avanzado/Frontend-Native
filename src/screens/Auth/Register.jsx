@@ -5,7 +5,7 @@ import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { styleAuth } from './styleAuth';
 import { useDispatch, useSelector } from 'react-redux'
-import { register, updateUser } from '../../store/Slices/auth/authThunks';
+import { register, updateUser,logOut } from '../../store/Slices/auth/authThunks';
 import { validationRegisterUser, validationUpdateUser } from '../../config/schemas';
 import InputImage from '../../components/ui/InputImage';
 import Spinner from '../../components/Spinner';

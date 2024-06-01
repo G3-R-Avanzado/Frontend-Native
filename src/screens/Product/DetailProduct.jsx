@@ -20,16 +20,18 @@ const DetailProduct = ({ route }) => {
         <ScrollView contentContainerStyle={styles.container}>
             <View style={{marginHorizontal:3}}>
             <Text style={styles.titulo}>{selectedItem.titulo}</Text>
-            {/* <Image style={{width: "100%", height: "30%",objectFit:"contain"}} source={{ uri: `data:image/jpeg;base64,${selectedItem.image}` }} /> */}
             <Image style={{ width: "100%", height: 200 ,objectFit:"contain"}}  source={{ uri: `data:image/jpeg;base64,${selectedItem.image}` }} />
             <Text style={styles.precio}>${selectedItem.price}</Text>
             <Text style={{ color: "#6CA6FB", marginLeft: 10 }}>Ver los medios de pago</Text>
             <Text style={{ marginLeft: 10 }}>Stock disponible</Text>
             <View style={{ marginVertical: 5, marginHorizontal: 5 }}>
-                <Button title='Agregar al carrito' />
+                <Button title='Agregar al carrito' 
+                onPress={() => showAlert({ messageTitle: "¡Ups!", messageBody: "Estamos trabajando aun en mejorar. Disculpe las molestias" })}
+                />
             </View>
             <View style={{ marginVertical: 5, marginHorizontal: 5 }}>
-                <Button title='Preguntar' />
+                <Button title='Preguntar' 
+                onPress={() => showAlert({ messageTitle: "¡Ups!", messageBody: "Estamos trabajando aun en mejorar. Disculpe las molestias" })}                />
             </View>
             <Text style={{ marginLeft: 10 }}>Vendido por el usuario {selectedItem.user.name}</Text>
             <Text>
@@ -50,37 +52,33 @@ const DetailProduct = ({ route }) => {
             </View>
             <View>
                 <Text>Lo que tenés que saber de este producto:</Text>
-                <Text>{selectedItem.Description}</Text>
-            </View>
-            <View>
-                <Text>Productos relacionados</Text>
+                <Text style={{fontWeight: 'bold'}}>"{selectedItem.description}"</Text>
             </View>
             <View style={styles.container}>
-                <Text>Medios de pago</Text>
-                <Text>Hasta 12 cuotas sin tarjeta</Text>
+                <Text style={{fontWeight: 'bold',textAlign:"center"}}>Medios de pago</Text>
+                <Text >Hasta 12 cuotas sin tarjeta</Text>
                 <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={mercadocredito} />
-                <Text>Tarjetas de crédito</Text>
+                <Text style={{fontWeight: 'bold'}}>Tarjetas de crédito</Text>
                 <Text>¡Mismo precio en cuotas con bancos seleccionados!</Text>
                 <View style={styles.contenedorTarjetas}>
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={visa} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={amercanExpress} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={mastercard} />
                 </View>
-                <Text>Tarjetas de débito</Text>
+                <Text style={{fontWeight: 'bold'}}>Tarjetas de débito</Text>
                 <View style={styles.contenedorTarjetas}>
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={visaDebito} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={maestro} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={mastercardDebito} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={cabalDebito} />
                 </View>
-                <Text>Efectivo</Text>
+                <Text style={{fontWeight: 'bold'}}>Efectivo</Text>
                 <View style={styles.contenedorTarjetas}>
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={pagoFacil} />
                     <Image style={{ width: 50, height: 50, marginLeft: 5, objectFit: "contain" }} source={rapipago} />
                 </View>
                 <Button title="Conocé otros medios de pago" 
-                onPress={() => showAlert({ messageTitle: "¡Guardado Exitosamente!", messageBody: "Se guardó en su lista exitósamente" })}
-                />
+                onPress={() => showAlert({ messageTitle: "¡Ups!", messageBody: "Estamos trabajando aun en mejorar. Disculpe las molestias" })}                />
             </View>
         </View>
         </ScrollView>
