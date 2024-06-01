@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "MlClonNative",
-    "slug": "MlClonNative",
+    "slug": "clonml-7ykab2shmuw4qii8x9uo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "permissions": ["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE","INTERNET"]
+      "permissions": [
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.INTERNET",
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.gruporeactavanzado.clonml7ykab2shmuw4qii8x9uo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +40,12 @@
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "f39b0949-e3e8-476b-8866-9c61000d16a4"
+      }
+    },
+    "owner": "gruporeactavanzado"
   }
 }
