@@ -95,7 +95,7 @@ const style = StyleSheet.create({
     },
     register: {
         flex: 1,
-        justifyContent: 'flex-end'
+        justifyContent: 'flex-center'
     }, 
     form: {
         flex: 2,

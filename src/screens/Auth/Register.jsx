@@ -5,19 +5,19 @@ import { CustomButton } from '../../components/ui/CustomButton';
 import Logo from '../../../assets/logo1.png'
 import { styleAuth } from './styleAuth';
 import { useDispatch, useSelector } from 'react-redux'
-import { register, updateUser } from '../../store/Slices/auth/authThunks';
+import { register, updateUser, logOut } from '../../store/Slices/auth/authThunks';
 import { validationRegisterUser, validationUpdateUser } from '../../config/schemas';
 import InputImage from '../../components/ui/InputImage';
 import Spinner from '../../components/Spinner';
 import useAlert from '../../hooks/useAlert';
 import { object } from 'yup';
 
-const Register = ({showLogo, textConfirm }) => {
-    const {user, message} = useSelector((store)=>store.auth)
-    const [image, setImage] = useState(user.picture != null ? {base64: user.picture}: null);
+const Register = ({ showLogo, textConfirm }) => {
+    const { user, message } = useSelector((store) => store.auth)
+    const [image, setImage] = useState(user.picture != null ? { base64: user.picture } : null);
     const dispatch = useDispatch();
     const [showSpinner, setShowSpinner] = useState(true)
-    const {showAlert}=useAlert();
+    const { showAlert } = useAlert();
 
 
     const initialValues = {
@@ -27,21 +27,25 @@ const Register = ({showLogo, textConfirm }) => {
         password: user.password ? user.password : ''
     }
 
-    useEffect(()=>{
-        if(user.id == null){
+    useEffect(() => {
+        if (user.id == null) {
             dispatch(logOut());
         }
-    },[])
+    }, [])
 
     const handleSubmitFormik = (values) => {
         setShowSpinner(false)
-        if(user.email!=null){
-            dispatch(updateUser({...values, picture: image != null ? image.base64 : ''}))
-        }else {
-            dispatch(register({...values, picture: image != null ? image.base64 : ''}))
+        if (user.email != null) {
+            dispatch(updateUser({ ...values, picture: image != null ? image.base64 : '' })).then(() => {
+                setShowSpinner(true)
+            })
+        } else {
+            dispatch(register({ ...values, picture: image != null ? image.base64 : '' })).then(() => {
+                setShowSpinner(true)
+            })
         }
-        if(values.username!==null && values.password!==null&& values.name!==null )
-        showAlert({messageTitle:"Registro exitoso!",messageBody:"¡Bienvenido a Tucu Libre!"})
+        if (values.username !== null && values.password !== null && values.name !== null)
+            showAlert({ messageTitle: "Registro exitoso!", messageBody: "¡Bienvenido a Tucu Libre!" })
     }
 
     return (
@@ -68,15 +72,15 @@ const Register = ({showLogo, textConfirm }) => {
                             <>
                                 <View style={{ flex: 4, justifyContent: 'space-evenly' }}>
                                     <View>
-                                        <View style={{flex:1, flexDirection: 'row'}}>
+                                        <View style={{ flex: 1, flexDirection: 'row' }}>
                                             <View style={style.inputImage} >
-                                                <InputImage 
+                                                <InputImage
                                                     image={image}
                                                     setImage={setImage}
-                                                    
+
                                                 />
                                             </View>
-                                            <View style={{flex: 5, justifyContent: 'center', paddingLeft: 5}}>
+                                            <View style={{ flex: 5, justifyContent: 'center', paddingLeft: 5 }}>
                                                 <TextInput
                                                     style={styleAuth.input}
                                                     placeholder={'Nombre'}
@@ -120,12 +124,16 @@ const Register = ({showLogo, textConfirm }) => {
                                         {errors.password && touched.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
                                     </View>}
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                                    <CustomButton
-                                        text={textConfirm}
-                                        onClick={handleSubmit}
-                                        color='white'
-                                    />
+                                <View style={{ flex: 1, justifyContent: 'flex-center' }}>
+                                    {showSpinner ?
+                                        <>
+                                            <Text style={{ color: 'red' }}>{message != null && message.type == 'error' ? message.text : ''}</Text>
+                                            <CustomButton
+                                                text={textConfirm}
+                                                onClick={handleSubmit}
+                                                color='white'
+                                            />
+                                        </> : <Spinner />}
                                 </View>
                             </>
                         )}
@@ -153,11 +161,11 @@ const style = StyleSheet.create({
         justifyContent: 'center'
     },
     form: {
-        flex: 2,
+        flex: 4,
         width: '100%'
     },
     inputImage: {
-        height: 100, 
+        height: 100,
         flex: 2,
     }
 });
