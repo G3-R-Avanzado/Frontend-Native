@@ -8,7 +8,7 @@ export const validationRegisterUser = yup.object().shape({
     name: yup.string().required("Campo requerido"),
     username: yup.string().required("Campo requerido"),
     email: yup.string().email("debe ingresar un email").required("Campo requerido"),
-    password: yup.string().required("Campo requerido")
+    password: yup.string().min(8, 'El contraseña debe tener al menos 8 caracteres').required("Campo requerido")
 });
 
 export const validationUpdateUser = yup.object().shape({
